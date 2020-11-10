@@ -1,0 +1,47 @@
+BugReport
+-title
+-status(open, reviewed, closed)
+-assignee
+-comments
+-date
+-closeDate
+
+number of bug report in month
+number of bug resolved in a week
+best perfomed reporter/developer
+
+User
+-ViewBugReports
+-SearchForBugByKeyword
+-SearchForBugByTitle
+-SearchForBugByAssignee
+-AddComment
+
+BugReporter
+-CreateBugReport
+
+Triager
+- ViewOpenBugs
+- assign bug to developer
+- BestPeformingReporter
+- ViewBestPerformingDeveloper
+- CloseBug
+
+Developer
+- ViewAssignedBugs
+- UpdateBugStatus
+
+Reviewer
+- ViewPendingBugs
+- change status to reviewed
+
+
+use case diagram
+use case description
+sequence diagram
+bce diagram
+class diagrams
+wireframe
+
+data persistence
+user interface
