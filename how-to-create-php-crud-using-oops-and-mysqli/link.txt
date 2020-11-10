@@ -1,3 +1,3 @@
-
+http://localhost/how-to-create-php-crud-using-oops-and-mysqli/index.php
 
 https://phppot.com/php/how-to-create-php-crud-using-oops-with-mysqli-in-mvc/
