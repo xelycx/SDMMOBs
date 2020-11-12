@@ -7,7 +7,7 @@ class Developer extends User
 		//search database BugReport table by id and list all the bug reports
 	}
 	
-	function UpdateBugStatusPending()
+	function UpdateBugStatusPending($id)
 	{
 		//search database BugReport table by id and change status to pending
 	}

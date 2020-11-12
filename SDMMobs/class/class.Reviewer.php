@@ -7,7 +7,7 @@ class Reviewer extends User
 		//search database BugReport table by id and list all the bug reports
 	}
 	
-	function UpdateBugStatusReviewed()
+	function UpdateBugStatusReviewed($id)
 	{
 		//search database BugReport table by id change status to reviewed
 	}
