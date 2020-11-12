@@ -6,8 +6,8 @@ class BugReport
 	public $id;
 	public $title;
 	public $description;
-	public $status;//(open, reviewed, closed)
-	public $assignee;//assigned to developer
+	public $status;//(open, pending, reviewed, closed)
+	public $assignee;//assigned to developer, store by user id or string
 	public $createDate; //need the create date for listing new/ recent bugs, search by date,best reporter
 	public $closeDate; //for tracking closed bugs for best developer
 	public $comments;//using string for now, should be list of comments from another table, maybe removing later
