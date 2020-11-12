@@ -1,3 +1,10 @@
+//comment table
+comment 
+-user_id
+-dateCreated
+-details
+-lastEdited//??low priority
+
 BugReport
 -title
 -description
