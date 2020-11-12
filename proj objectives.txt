@@ -1,14 +1,15 @@
 BugReport
 -title
 -status(open, reviewed, closed)
+-description
 -assignee
--comments
--date
+-createDate
 -closeDate
+-comments
 
 number of bug report in month
 number of bug resolved in a week
-best perfomed reporter/developer
+best performed reporter/developer
 
 User
 -ViewBugReports
