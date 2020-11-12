@@ -12,7 +12,7 @@ class Triager extends User
 		//search database BugReport table by id and change assignee field
 	}
 	
-	function CloseBug($id)
+	function UpdateBugStatusClosed($id)
 	{
 		//search database BugReport table by id and set status as closed
 	}
