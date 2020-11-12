@@ -1,7 +1,7 @@
 BugReport
 -title
--status(open, reviewed, closed)
 -description
+-status(open, reviewed, closed)
 -assignee
 -createDate
 -closeDate
