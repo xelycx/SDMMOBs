@@ -10,10 +10,11 @@ class BugReport
 	public $assignee;//assigned to developer, store by user id or string
 	public $createDate; //need the create date for listing new/ recent bugs, search by date,best reporter
 	public $closeDate; //for tracking closed bugs for best developer
+	public $severityLevel;
 	public $comments;//using string for now, should be list of comments from another table, maybe removing later
 	
 	//Constructor
-	function __construct($id, $title, $description, $status, $assignee, $createDate, $closeDate, $comments)
+	function __construct($id, $title, $description, $status, $assignee, $createDate, $closeDate, $severityLevel, $comments)
 	{
 		$this->id = $id;
 		$this->title = $title;
@@ -22,6 +23,7 @@ class BugReport
 		$this->assignee = $assignee;
 		$this->createDate = $createDate;
 		$this->closeDate = $closeDate;
+		$this->severityLevel = $severityLevel;
 		$this->comments = $comments;
 	}
 	
@@ -40,6 +42,8 @@ class BugReport
 	
 	function set_closeDate($closeDate) { $this->closeDate = $closeDate; }
 	
+	function set_severityLevel($severityLevel) { $this->severityLevel = $severityLevel; }
+	
 	function set_comments($comments) { $this->comments = $comments; }
 	
 	//Getters
@@ -57,6 +61,8 @@ class BugReport
 	function get_createDate() { return $this->createDate; }
 	
 	function get_closeDate() { return $this->closeDate; }
+	
+	function get_severityLevel() { return $this->severityLevel; }
 	
 	function get_comments() { return $this->comments; }
 	

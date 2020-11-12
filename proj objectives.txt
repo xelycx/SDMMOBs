@@ -5,6 +5,7 @@ BugReport
 -assignee
 -createDate
 -closeDate
+-severitylevel
 -comments
 
 number of bug report in month
