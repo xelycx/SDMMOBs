@@ -1,3 +1,7 @@
 https://codewithawa.com/posts/admin-and-user-login-in-php-and-mysql-database
 
 http://localhost/admin-and-user-login-in-php-and-mysql-database/index.php
+
+
+//admin page
+http://localhost/admin-and-user-login-in-php-and-mysql-database/admin/create_user.php
