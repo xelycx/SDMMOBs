@@ -92,7 +92,7 @@ class BugReport
 		return $result;
 	}
 	
-	function ViewBugReports()
+	function ViewBugReportList()
 	{
 		$query = "SELECT * FROM BugReport";
 		$result = mysqli_query($this->db_handle, $query);
