@@ -84,6 +84,14 @@ class BugReport
 	function DeleteBugReport() {}
 	
 	//other functions
+	function ViewBugReport($id)
+	{
+		$query = "SELECT * FROM BugReport WHERE id = $id";
+		$result = mysqli_query($this->db_handle, $query);
+
+		return $result;
+	}
+	
 	function ViewBugReports()
 	{
 		$query = "SELECT * FROM BugReport";
