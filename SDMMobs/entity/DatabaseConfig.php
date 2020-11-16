@@ -15,7 +15,7 @@ class DatabaseConfig
 		
 	}
 	
-	function ret_obj() { return $this->connection; }
+	function getConnection() { return $this->connection; }
 
 }
 ?>

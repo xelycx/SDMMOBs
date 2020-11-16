@@ -38,7 +38,7 @@ class BugReport
 	{
 		//database
 		$dbc = new DataBaseConfig();
-		$this->db_handle = $dbc->ret_obj();
+		$this->db_handle = $dbc->getConnection();
 	}
 	
 	//Setters
