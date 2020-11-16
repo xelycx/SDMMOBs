@@ -2,7 +2,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'test');
+define('DB_DATABASE', 'sdmmobs');
 
 class DatabaseConfig
 {
@@ -18,3 +18,4 @@ class DatabaseConfig
 	function ret_obj() { return $this->connection; }
 
 }
+?>
