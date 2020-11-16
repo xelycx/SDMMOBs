@@ -31,13 +31,13 @@ class BugReport
 		// $this->comments = $comments;
 		
 		// //database
-		// $this->db_handle = new DBController();
+		// $this->db_handle = new DataBaseConfig();
 	// }
 	
 	function __construct()
 	{
 		//database
-		$this->db_handle = new DBController();
+		$this->db_handle = new DataBaseConfig();
 	}
 	
 	//Setters
