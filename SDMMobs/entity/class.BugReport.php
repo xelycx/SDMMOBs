@@ -37,7 +37,8 @@ class BugReport
 	function __construct()
 	{
 		//database
-		$this->db_handle = new DataBaseConfig();
+		$dbc = new DataBaseConfig();
+		$this->db_handle = $dbc->ret_obj();
 	}
 	
 	//Setters

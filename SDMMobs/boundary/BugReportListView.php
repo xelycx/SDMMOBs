@@ -9,7 +9,7 @@
 
 		foreach ($bugs as $title => $bug)
 		{
-			echo '<tr><td><a href="index.php?bug='.$bug->title.'">'.$bug->title.'</a></td><td>'.$book->description.'</td><td>'.$book->status.'</td><td>'.$book->assignee.'</td><td>'.$book->Status.'</td><td>'.$book->createDate.'</td><td>'.$book->closeDate.'</td><td>'.$book->severityLevel.'</td></tr>';
+			echo '<tr><td><a href="indexbugreportlist.php?bug='.$bug->title.'">'.$bug->title.'</a></td><td>'.$bug->description.'</td><td>'.$bug->status.'</td><td>'.$bug->assignee.'</td><td>'.$bug->Status.'</td><td>'.$bug->createDate.'</td><td>'.$bug->closeDate.'</td><td>'.$bug->severityLevel.'</td></tr>';
 		}
 
 	?>
