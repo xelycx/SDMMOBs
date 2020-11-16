@@ -1,5 +1,5 @@
 <?php
-include_once("entity/BugReport.php");
+include_once("entity/class.BugReport.php");
 
 class BugReportController
 {
@@ -16,13 +16,13 @@ class BugReportController
 		{
 			// no bugreport is requested, show a list of all bugreport
 			$bugs = $this->bugreport->ViewBugReportList();
-			include 'view/BugReportListView.php';
+			include 'boundary/BugReportListView.php';
 		}
 		else
 		{
 			// show the requested bug report
 			$bug = $this->bugreport->ViewBugReport($_GET['bugreport']);
-			include 'view/BugReportView.php';
+			include 'boundary/BugReportView.php';
 		}
 	}
 }

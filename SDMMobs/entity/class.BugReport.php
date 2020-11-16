@@ -18,18 +18,24 @@ class BugReport
 	public $comments;//using string for now, should be list of comments from another table, maybe removing later
 	
 	//Constructor
-	function __construct($id, $title, $description, $status, $assignee, $createDate, $closeDate, $severityLevel, $comments)
-	{
-		$this->id = $id;
-		$this->title = $title;
-		$this->description = $description;
-		$this->status = $status;
-		$this->assignee = $assignee;
-		$this->createDate = $createDate;
-		$this->closeDate = $closeDate;
-		$this->severityLevel = $severityLevel;
-		$this->comments = $comments;
+	// function __construct($id, $title, $description, $status, $assignee, $createDate, $closeDate, $severityLevel, $comments)
+	// {
+		// $this->id = $id;
+		// $this->title = $title;
+		// $this->description = $description;
+		// $this->status = $status;
+		// $this->assignee = $assignee;
+		// $this->createDate = $createDate;
+		// $this->closeDate = $closeDate;
+		// $this->severityLevel = $severityLevel;
+		// $this->comments = $comments;
 		
+		// //database
+		// $this->db_handle = new DBController();
+	// }
+	
+	function __construct()
+	{
 		//database
 		$this->db_handle = new DBController();
 	}
