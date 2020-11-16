@@ -31,7 +31,8 @@
 				<table>
 					<?php
 						include_once("controller/BugReportController.php");
-					
+						// $rowtmp = mysqli_fetch_assoc($bugs);
+						// echo $rowtmp['0'];
 						if(mysqli_num_rows($bugs)>0)
 						{
 							echo "<table class='table table-bordered table-striped'>";
@@ -62,7 +63,8 @@
 									echo "<td>" . $row['closeDate'] . "</td>";
 									echo "<td>" . $row['severityLevel'] . "</td>";
 									echo "<td>";
-										echo "<a href='read.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+										//echo implode(" ",$row);
+										echo "<a href='indexbugreportlist.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
 										echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
 										echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
 									echo "</td>";

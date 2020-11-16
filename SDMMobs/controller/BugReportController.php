@@ -16,13 +16,13 @@ class BugReportController
 		{
 			// no bugreport is requested, show a list of all bugreport
 			$bugs = $this->bugreport->ViewBugReportList();
-			//include 'boundary/BugReportListView.php';
+			include 'boundary/BugReportListView.php';
 		}
 		else
 		{
 			// show the requested bug report
 			$bug = $this->bugreport->ViewBugReport($_GET['bugreport']);
-			//include 'boundary/BugReportView.php';
+			include 'boundary/BugReportView.php';
 		}
 	}
 }
