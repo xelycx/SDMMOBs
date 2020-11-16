@@ -58,6 +58,21 @@ class User
 	
 	function AddComment() {}
 	
+	function GetUser($id)
+	{
+		$query = "SELECT * FROM Users WHERE id = $id";
+		$result = mysqli_query($this->db_handle, $query);
+
+		return $result;
+	}
+	
+	function GetUserList()
+	{
+		$query = "SELECT * FROM Users";
+		$result = mysqli_query($this->db_handle, $query);
+
+		return $result;
+	}
 }
 
 ?>
