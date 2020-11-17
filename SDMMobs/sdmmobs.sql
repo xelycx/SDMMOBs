@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2020 at 01:23 PM
+-- Generation Time: Nov 17, 2020 at 06:33 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -24,28 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bugreport`
+-- Table structure for table `bugreports`
 --
 
-CREATE TABLE `bugreport` (
-  `id` int(11) NOT NULL,
-  `title` varchar(30) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `assignee` int(5) NOT NULL,
-  `createDate` datetime(6) NOT NULL,
-  `closeDate` datetime(6) DEFAULT NULL,
-  `severityLevel` int(2) NOT NULL,
-  `reviewedBy` varchar(20) NOT NULL,
-  `triagedBy` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `bugreports` (
+  `bug_id` int(11) NOT NULL,
+  `bug_reporter` varchar(50) DEFAULT NULL,
+  `bug_triager` varchar(50) DEFAULT NULL,
+  `bug_developer` varchar(50) DEFAULT NULL,
+  `bug_reviewer` varchar(50) DEFAULT NULL,
+  `bug_title` varchar(100) NOT NULL,
+  `bug_description` varchar(500) NOT NULL,
+  `bug_status` varchar(50) NOT NULL,
+  `bug_open_date` datetime NOT NULL,
+  `bug_close_date` datetime DEFAULT NULL,
+  `bug_severity_lvl` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `bugreport`
+-- Dumping data for table `bugreports`
 --
 
-INSERT INTO `bugreport` (`id`, `title`, `description`, `status`, `assignee`, `createDate`, `closeDate`, `severityLevel`, `reviewedBy`, `triagedBy`) VALUES
-(1, 'test title', 'test description. dfgjdkjkdkj', 'pending', 1, '2020-11-16 13:57:06.000000', '2020-11-24 13:57:06.000000', 2, '', '');
+INSERT INTO `bugreports` (`bug_id`, `bug_reporter`, `bug_triager`, `bug_developer`, `bug_reviewer`, `bug_title`, `bug_description`, `bug_status`, `bug_open_date`, `bug_close_date`, `bug_severity_lvl`) VALUES
+(1, 'BR1', 'T1', 'D1', 'R1', 'IOS error', 'ios error, cant display the home page', 'open', '2020-11-26 00:54:49', '2020-11-27 02:14:00', 3);
+
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `bug_id` int(11) NOT NULL,
+  `comment` varchar(500) NOT NULL,
+  `comment_datetime` datetime DEFAULT NULL,
+  `user_id` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -54,20 +72,21 @@ INSERT INTO `bugreport` (`id`, `title`, `description`, `status`, `assignee`, `cr
 --
 
 CREATE TABLE `user` (
-  `userID` int(11) NOT NULL,
-  `userName` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `userRole` varchar(30) NOT NULL,
-  `userStatus` varchar(30) NOT NULL,
-  `areaOfExpertise` varchar(20) DEFAULT NULL
+  `user_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_role` varchar(100) NOT NULL,
+  `user_status` varchar(100) DEFAULT NULL,
+  `area_of_expertise` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `userName`, `email`, `password`, `userRole`, `userStatus`, `areaOfExpertise`) VALUES
+
+INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `user_role`, `user_status`, `area_of_expertise`) VALUES
 (1, 'bugreporter1', 'mcunningham0@twitter.com', 'bugreporter', 'bugreporter', 'Available', 'NA'),
 (2, 'triager2', 'jtooley1@bluehost.com', 'triager', 'triager', 'Available', 'NA'),
 (3, 'developer3', 'gduncan2@webeden.co.uk', 'developer', 'developer', 'Available', 'area 2'),
@@ -118,38 +137,49 @@ INSERT INTO `user` (`userID`, `userName`, `email`, `password`, `userRole`, `user
 (48, 'reviewer48', 'bwhalley1b@jugem.jp', 'reviewer', 'reviewer', 'Available', 'NA'),
 (49, 'bugreporter49', 'tbeetles1c@skype.com', 'bugreporter', 'bugreporter', 'Available', 'NA'),
 (50, 'triager50', 'bgymlett1d@nba.com', 'triager', 'triager', 'Available', 'NA');
-
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `bugreport`
+-- Indexes for table `bugreports`
 --
-ALTER TABLE `bugreport`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `bugreports`
+  ADD PRIMARY KEY (`bug_id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `bugreport`
+-- AUTO_INCREMENT for table `bugreports`
 --
-ALTER TABLE `bugreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `bugreports`
+  MODIFY `bug_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
