@@ -16,7 +16,8 @@ class BugReport
 	public $closeDate; //for tracking closed bugs for best developer
 	public $severityLevel;
 	public $comments;//using string for now, should be list of comments from another table, maybe removing later
-	
+	public $reviewedBy;
+
 	//Constructor
 	// function __construct($id, $title, $description, $status, $assignee, $createDate, $closeDate, $severityLevel, $comments)
 	// {

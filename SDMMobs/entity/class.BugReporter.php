@@ -6,8 +6,7 @@ class BugReporter extends User
 
 	function __construct($userName)
 	{
-		$dbc = new DataBaseConfig();
-		$this->db_handle = $dbc->getConnection();
+		$this->db_handle = (new DataBaseConfig())->getConnection();
 		
 		// Create query
 		$stmt = mysqli_query($this->db_handle, "SELECT * FROM user WHERE username='$userName'");
