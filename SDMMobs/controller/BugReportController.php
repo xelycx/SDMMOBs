@@ -12,7 +12,7 @@ class BugReportController
 	
 	public function invoke()
 	{
-		if (!isset($_GET['id']))
+		if (!isset($_GET['bug_id']))
 		{
 			// no bugreport is requested, show a list of all bugreport
 			$bugs = $this->bugreport->ViewBugReportList();
@@ -21,7 +21,7 @@ class BugReportController
 		else
 		{
 			// show the requested bug report
-			$bug = $this->bugreport->ViewBugReport($_GET['id']);
+			$bug = $this->bugreport->ViewBugReport($_GET['bug_id']);
 			include 'boundary/BugReportView.php';
 			
 			

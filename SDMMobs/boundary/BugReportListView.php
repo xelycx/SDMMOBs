@@ -54,19 +54,19 @@
 								while($row = mysqli_fetch_assoc($bugs))
 								{
 									echo "<tr>";
-									echo "<td>" . $row['id'] . "</td>";
-									echo "<td>" . $row['title'] . "</td>";
-									echo "<td>" . $row['description'] . "</td>";
-									echo "<td>" . $row['status'] . "</td>";
-									echo "<td>" . $row['assignee'] . "</td>";
-									echo "<td>" . $row['createDate'] . "</td>";
-									echo "<td>" . $row['closeDate'] . "</td>";
-									echo "<td>" . $row['severityLevel'] . "</td>";
+									echo "<td>" . $row['bug_id'] . "</td>";
+									echo "<td>" . $row['bug_title'] . "</td>";
+									echo "<td>" . $row['bug_description'] . "</td>";
+									echo "<td>" . $row['bug_status'] . "</td>";
+									echo "<td>" . $row['bug_developer'] . "</td>";
+									echo "<td>" . $row['bug_open_date'] . "</td>";
+									echo "<td>" . $row['bug_close_date'] . "</td>";
+									echo "<td>" . $row['bug_severity_lvl'] . "</td>";
 									echo "<td>";
 										//echo implode(" ",$row);
-										echo "<a href='indexbugreportlist.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-										echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-										echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+										echo "<a href='indexbugreportlist.php?bug_id=". $row['bug_id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+										echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+										echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
 									echo "</td>";
 									
 									echo "</tr>";

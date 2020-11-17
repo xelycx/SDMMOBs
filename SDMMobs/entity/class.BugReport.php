@@ -7,22 +7,22 @@ class BugReport
     private $db_handle;
     
 	//Attributes
-	public $id;
-	public $title;
-	public $description;
-	public $status;//(open, pending, reviewed, closed)
-	public $assignee;//assigned to developer, store by user id or string
-	public $createDate; //need the create date for listing new/ recent bugs, search by date,best reporter
-	public $closeDate; //for tracking closed bugs for best developer
-	public $severityLevel;
-	public $comments;//using string for now, should be list of comments from another table, maybe removing later
-	public $reviewedBy;
-	public $triagedBy;
+	public $bug_id;
+	public $bug_title;
+	public $bug_description;
+	public $bug_status;//(open, pending, reviewed, closed)
+	public $bug_open_date; //need the create date for listing new/ recent bugs, search by date,best reporter
+	public $bug_close_date; //for tracking closed bugs for best developer
+	public $bug_severity_lvl;
+	public $bug_reporter;
+	public $bug_triager;
+	public $bug_developer;
+	public $bug_reviewer;
 
 	//Constructor
-	// function __construct($id, $title, $description, $status, $assignee, $createDate, $closeDate, $severityLevel, $comments)
+	// function __construct($bug_id, $title, $description, $status, $assignee, $createDate, $closeDate, $severityLevel, $comments)
 	// {
-		// $this->id = $id;
+		// $this->bug_id = $bug_id;
 		// $this->title = $title;
 		// $this->description = $description;
 		// $this->status = $status;
@@ -44,41 +44,41 @@ class BugReport
 	}
 	
 	//Setters
-	function set_id($id) { $this->id = $id; }
+	function set_id($bug_id) { $this->bug_id = $bug_id; }
 	
-	function set_title($title) { $this->title = $title; }
+	function set_title($bug_title) { $this->bug_title = $bug_title; }
 	
-	function set_description($description) { $this->description = $description; }
+	function set_description($bug_description) { $this->bug_description = $bug_description; }
 	
-	function set_status($status) { $this->status = $status; }
+	function set_status($bug_status) { $this->bug_status = $bug_status; }
 	
-	function set_assignee($assignee) { $this->assignee = $assignee; }
+	function set_assignee($bug_developer) { $this->bug_developer = $bug_developer; }
 	
-	function set_createDate($createDate) { $this->createDate = $createDate; }
+	function set_createDate($bug_open_date) { $this->bug_open_date = $bug_open_date; }
 	
-	function set_closeDate($closeDate) { $this->closeDate = $closeDate; }
+	function set_closeDate($bug_close_date) { $this->bug_close_date = $bug_close_date; }
 	
-	function set_severityLevel($severityLevel) { $this->severityLevel = $severityLevel; }
+	function set_severityLevel($bug_severity_lvl) { $this->bug_severity_lvl = $bug_severity_lvl; }
 	
 	function set_comments($comments) { $this->comments = $comments; }
 	
 	//Getters
 	
-	function get_id() { return $this->id; }
+	function get_id() { return $this->bug_id; }
 	
-	function get_title() { return $this->title; }
+	function get_title() { return $this->bug_title; }
 	
-	function get_description() { return $this->description; }
+	function get_description() { return $this->bug_description; }
 	
-	function get_status() { return $this->status; }
+	function get_status() { return $this->bug_status; }
 	
-	function get_assignee() { return $this->assignee; }
+	function get_assignee() { return $this->bug_developer; }
 	
-	function get_createDate() { return $this->createDate; }
+	function get_createDate() { return $this->bug_open_date; }
 	
-	function get_closeDate() { return $this->closeDate; }
+	function get_closeDate() { return $this->bug_close_date; }
 	
-	function get_severityLevel() { return $this->severityLevel; }
+	function get_severityLevel() { return $this->bug_severity_lvl; }
 	
 	function get_comments() { return $this->comments; }
 	
@@ -138,10 +138,10 @@ class BugReport
 		// //$mysqli->close();
 	// }
 	
-	function ViewBugReport($id)
+	function ViewBugReport($bug_id)
 	{
 		//use the previous function to get all the bugreports and then we return the requested one.
-		$query = "SELECT * FROM BugReport WHERE id = $id";
+		$query = "SELECT * FROM BugReports WHERE bug_id = $bug_id";
 		$result = mysqli_query($this->db_handle, $query);
 		$bugreport = mysqli_fetch_object($result);
 		//$this->db_handle->close();
@@ -150,7 +150,7 @@ class BugReport
 	
 	function ViewBugReportList()
 	{
-		$query = "SELECT * FROM BugReport";
+		$query = "SELECT * FROM BugReports";
 		$result = mysqli_query($this->db_handle, $query);
 
 		return $result;
@@ -158,7 +158,7 @@ class BugReport
 	
 	function SearchForBugByKeyword($keyword)
 	{
-		$query = "SELECT * FROM BugReport WHERE description LIKE '%$keyword%' ";
+		$query = "SELECT * FROM BugReports WHERE bug_description LIKE '%$keyword%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
 		$bugreport = mysqli_fetch_assoc($result);
@@ -167,7 +167,7 @@ class BugReport
 	
 	function SearchForBugByTitle($title)
 	{
-		$query = "SELECT * FROM BugReport WHERE title LIKE '%$title%' ";
+		$query = "SELECT * FROM BugReports WHERE bug_title LIKE '%$title%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
 		$bugreport = mysqli_fetch_assoc($result);
@@ -176,7 +176,7 @@ class BugReport
 	
 	function SearchForBugByAssignee($assignee)
 	{
-		$query = "SELECT * FROM BugReport WHERE assignee LIKE '%$assignee%' ";
+		$query = "SELECT * FROM BugReports WHERE bug_developer LIKE '%$assignee%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
 		$bugreport = mysqli_fetch_assoc($result);
