@@ -8,14 +8,14 @@ class Reviewer extends User
 		//search database BugReport table by id and list all the bug reports
 	}
 	
-	function UpdateBugStatusReviewed($id)
+	function UpdateBugStatusReviewed($bug_id)
 	{
 		//search database BugReport table by id change status to reviewed
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		$reviewer = $_SESSION['userName'];
+		$reviewer = $_SESSION['username'];
 		
 		// Create query
-		$update_stmt = mysqli_query($this->db_handle, "UPDATE bugreport SET reviewedBy='$reviewer', status='Reviewed' WHERE id='$id'");
+		$update_stmt = mysqli_query($this->db_handle, "UPDATE bugreports SET bug_reviewer='$reviewer', bug_status='Reviewed' WHERE bug_id='$bug_id'");
 	}
 }
 

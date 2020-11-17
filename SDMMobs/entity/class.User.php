@@ -6,13 +6,13 @@ class User
 	private $db_handle;
 
 	//Attributes
-	protected $userID;
-	protected $userName;
+	protected $user_id;
+	protected $username;
 	protected $email;
 	private $password;
-	protected $userRole;
-	protected $userStatus;
-	protected $areaOfExpertise;
+	protected $user_role;
+	protected $user_status;
+	protected $area_of_expertise;
 	
 	//Constructor
 /*	function __construct($userID, $userName, $password, $userRole)
@@ -27,47 +27,47 @@ class User
 	}*/
 	
 	//Setters
-	function set_userID($userID) { $this->userID = $userID; }
+	function set_userID($user_id) { $this->user_id = $user_id; }
 	
-	function set_userName($userName) { $this->userName = $userName; }
+	function set_userName($username) { $this->username = $username; }
 
 	function set_email($email) { $this->email = $email; }
 	
 	function set_password($password) { $this->password = $password; }
 	
-	function set_userRole($userRole) { $this->userRole = $userRole; }
+	function set_userRole($user_role) { $this->user_role = $user_role; }
 	
-	function set_userStatus($userStatus) { $this->userStatus = $userStatus; }
+	function set_userStatus($user_status) { $this->user_status = $user_status; }
 	
-	function set_areaOfExpertise($areaOfExpertise) { $this->areaOfExpertise = $areaOfExpertise; }
+	function set_areaOfExpertise($area_of_expertise) { $this->area_of_expertise = $area_of_expertise; }
 	
 	//Getters
-	function get_userID() { return $this->userID; }
+	function get_userID() { return $this->user_id; }
 	
-	function get_userName() { return $this->userName; }
+	function get_userName() { return $this->username; }
 
 	function get_email() { return $this->email; }
 	
 	function get_password() { return $this->password; }
 	
-	function get_userRole() { return $this->userRole; }
+	function get_userRole() { return $this->user_role; }
 	
-	function get_userStatus() { return $this->userStatus; }
+	function get_userStatus() { return $this->user_status; }
 	
-	function get_areaOfExpertise() { return $this->areaOfExpertise; }
+	function get_areaOfExpertise() { return $this->area_of_expertise; }
 	
 	//Functions
 	function login()
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
 		// Create query
-		$stmt = mysqli_query($this->db_handle, "SELECT * FROM user WHERE userName='$this->userName' AND password='$this->password'");
+		$stmt = mysqli_query($this->db_handle, "SELECT * FROM user WHERE username='$this->username' AND password='$this->password'");
 		while ($row = mysqli_fetch_assoc($stmt)) {			
 			// Check for num rows
 			if ($stmt->num_rows == 1) {
 				// Success
-				$_SESSION['userName'] = $this->userName;
-				$_SESSION['userRole'] = $row['userRole'];
+				$_SESSION['username'] = $this->username;
+				$_SESSION['user_role'] = $row['user_role'];
 				$_SESSION['isLoggedIn'] = TRUE;
 				
 				$stmt->close();
@@ -107,9 +107,9 @@ class User
 	
 	function AddComment() {}
 	
-	function GetUser($id)
+	function GetUser($user_id)
 	{
-		$query = "SELECT * FROM Users WHERE id = $id";
+		$query = "SELECT * FROM user WHERE user_id = $user_id";
 		$result = mysqli_query($this->db_handle, $query);
 
 		return $result;
@@ -117,7 +117,7 @@ class User
 	
 	function GetUserList()
 	{
-		$query = "SELECT * FROM Users";
+		$query = "SELECT * FROM user";
 		$result = mysqli_query($this->db_handle, $query);
 
 		return $result;
