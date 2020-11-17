@@ -59,9 +59,7 @@ class User
 	//Functions
 	function login()
 	{
-		$dbc = new DataBaseConfig();
-		$this->db_handle = $dbc->getConnection();
-		
+		$this->db_handle = (new DataBaseConfig())->getConnection();
 		// Create query
 		$stmt = mysqli_query($this->db_handle, "SELECT * FROM user WHERE userName='$this->userName' AND password='$this->password'");
 		while ($row = mysqli_fetch_assoc($stmt)) {			
