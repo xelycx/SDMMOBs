@@ -1,7 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/Classes/Reviewer.php';
 
-
+include_once("../../class.Reviewer.php");
 
 class updateToReviewedController {
 	
