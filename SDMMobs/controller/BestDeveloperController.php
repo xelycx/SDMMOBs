@@ -1,7 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/Classes/Triager.php';
 
-
+include_once("entity/class.Triager.php");
 
 class BestDeveloperController {
 
