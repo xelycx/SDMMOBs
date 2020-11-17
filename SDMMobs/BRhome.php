@@ -4,6 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <style>
 
 .navbar 
@@ -192,18 +195,17 @@ if ($res = $mysqli->query($sql))
 	if($res->num_rows > 0)
 	{
 		// Create table to display results 
-		echo "<h2>Bug Report</h2>";
+		echo "<h3><B>Bug Reports<B></h3>";
 		echo "<table id='bugReportTable'>\n";
 		//  echo "<thead class=\"thead-light\">\n";
 		echo "<tr>\n";
 		echo "<th field=\"col\">ID</th>";
-		echo "<th field=\"col\">Bug_Title</th>";
-		echo "<th field=\"col\">Bug_Description</th>";
-		echo "<th field=\"col\">Bug_keyword</th>";
-		echo "<th field=\"col\">Bug_Status</th>";
-		echo "<th field=\"col\">Bug_Open_Date</th>";
-		echo "<th field=\"col\">Bug_Closed_Date</th>";
-		echo "<th field=\"col\">Severity_level</th>";
+		echo "<th field=\"col\">Title</th>";
+		echo "<th field=\"col\">Description</th>";
+		echo "<th field=\"col\">Status</th>";
+		echo "<th field=\"col\">Open Date</th>";
+		echo "<th field=\"col\">Bug Close Date</th>";
+		echo "<th field=\"col\">Severity level</th>";
 		echo "<th field=\"col\">Action</th>";
 
 		echo "</tr>\n";
@@ -212,19 +214,18 @@ if ($res = $mysqli->query($sql))
 		while($row = $res->fetch_array())
 		{
 			echo "<tr>\n";
-			echo "<th field=\"row\">". $row['bug_id']."</th>";
+			echo "<td>".$row['bug_id']."</td>";
 			echo "<td>".$row['bug_title']."</td>";
 			echo "<td>".$row['bug_description']."</td>";
-			echo "<td>".$row['bug_keyword']."</td>";
 			echo "<td>".$row['bug_status']."</td>";
 			echo "<td>".$row['bug_open_date']."</td>";
-			echo "<td>".$row['bug_closed_date']."</td>";
+			echo "<td>".$row['bug_close_date']."</td>";
 			echo "<td>".$row['bug_severity_lvl']."</td>";
 			echo "<td>";
-			echo "<a href='read.php?bug_id=". $row['bug_id'] ."' title='View Report' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-			echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Report' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-			echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Report' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-			echo "<td>";
+  			echo "<a href='read.php?bug_id=". $row['bug_id'] ."' title='View Report' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'>&nbsp</span></a>";
+  			echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Report' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'>&nbsp</span></a>";
+  			echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Report' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+			echo "</td>";
 			echo "</tr>\n";
 		}
 	}
