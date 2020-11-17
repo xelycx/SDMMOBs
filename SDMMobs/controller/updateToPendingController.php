@@ -1,7 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/Classes/Developer.php';
 
-
+include_once("../../class.Developer.php");
 
 class updateToPendingController {
 	
