@@ -1,6 +1,6 @@
 <?php
+include_once("entity/class.Triager.php");
 
-include_once("../../class.Triager.php");
 
 class updateToCloseController {
 	
