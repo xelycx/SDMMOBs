@@ -1,5 +1,5 @@
 <?php
-include_once("../../class.BugReport.php");
+include_once("entity/class.BugReport.php");
 
 class BugReportController
 {
@@ -12,7 +12,7 @@ class BugReportController
 	
 	public function invoke()
 	{
-		if (!isset($_GET['bugreport']))
+		if (!isset($_GET['id']))
 		{
 			// no bugreport is requested, show a list of all bugreport
 			$bugs = $this->bugreport->ViewBugReportList();
@@ -21,8 +21,12 @@ class BugReportController
 		else
 		{
 			// show the requested bug report
-			$bug = $this->bugreport->ViewBugReport($_GET['bugreport']);
+			$bug = $this->bugreport->ViewBugReport($_GET['id']);
 			include 'boundary/BugReportView.php';
+			
+			
+			// $bug = $this->bugreport->SearchForBugByKeyword("desc");
+			// echo implode(" ",$bug);
 		}
 	}
 }
