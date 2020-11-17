@@ -1,6 +1,6 @@
 <?php
+include_once("entity/class.Reviewer.php");
 
-include_once("../../class.Reviewer.php");
 
 class updateToReviewedController {
 	
