@@ -7,8 +7,8 @@ class MonthlyReportController {
 	
 	function MonthlyReport(){
 
-		$fetchMonthly = new Triager();
-		$result = $fetchMonthly->getMonthlyReport();
+		$tmp_monthly = new Triager();
+		$result = $tmp_monthly->getMonthlyReport();
 		
 		return $result;
 	}
