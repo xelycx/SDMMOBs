@@ -6,8 +6,8 @@ class WeeklyReportController {
 	
 	function WeeklyReport(){
 
-		$fetchWeekly = new Triager();
-		$result = $fetchWeekly->getWeeklyReport();
+		$tmp_weekly = new Triager();
+		$result = $tmp_weekly->getWeeklyReport();
 		
 		return $result;
 	}
@@ -16,8 +16,8 @@ class WeeklyReportController {
 	//?????????????
 	function weeklyBugDate(){
 
-		$fetchWeekly = new Triager();
-		$result = $fetchWeekly->getWeeklyBugDate();
+		$tmp_weekly = new Triager();
+		$result = $tmp_weekly->getWeeklyBugDate();
 		
 		return $result;
 	}
