@@ -84,11 +84,78 @@ class BugReport
 	
 	//Functions
 	//basic CRUD
-	function CreateBugReport() {}
+	function CreateBugReport($reporter, $title, $keyword, $description, $bug_severity_lvl)
+	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
+		if (!empty($title) && !empty($keyword) && !empty($description))
+		{
+			$bug_created = date('Y-m-d H:i:s');
+			$sql = "INSERT INTO bugreports (bug_reporter, bug_developer, bug_triager, bug_reviewer, bug_title, bug_keyword, bug_description, bug_status, bug_open_date, bug_severity_lvl)
+									VALUES ('$reporter', '', '', '', '$title', '$keyword', '$description', 'Open', '$bug_created', '$bug_severity_lvl')";
+			
+			if ($db_handle->query($sql) === TRUE) { return(1); }
+			else { echo "Error: " . $sql . "<br>" . $this->db_handle->error; }
+			$this->db_handle->close();
+		}
+		else { return(0); }
+	}
+
 	
-	function ReadBugReport() {}
+	//function ReadBugReport() {}
 	
-	function UpdateBugReport() {}
+	// function UpdateBugReport()
+	// {
+	// 	$this->db_handle = (new DataBaseConfig())->getConnection();
+	// 	if (!empty($title) && !empty($keyword) && !empty($description))
+	// 	{
+	// 		$bug_created = date('Y-m-d H:i:s');
+	// 		$sql = "INSERT INTO bugreports (bug_reporter, bug_developer, bug_triager, bug_reviewer, bug_title, bug_keyword, bug_description, bug_status, bug_open_date, bug_severity_lvl)
+	// 								VALUES ('$reporter', '', '', '', '$title', '$keyword', '$description', 'Open', '$bug_created', '$bug_severity_lvl')";
+			
+	// 		if ($db_handle->query($sql) === TRUE) { return(1); }
+	// 		else { echo "Error: " . $sql . "<br>" . $this->db_handle->error; }
+	// 		$this->db_handle->close();
+	// 	}
+	// 	else { return(0); }
+	// }
+
+	function UpdateBugReport($title, $description, $status, $openDate, $closeDate, $severityLevel, $reporter, $triager, $developer, $reviewer)
+	{
+	    // Check input errors before inserting in database
+	    if(empty($title) && empty($description))
+	    {
+	        // Prepare an update statement
+	        $sql = "UPDATE BugReports SET $bug_title=?, $bug_description=?, $bug_status=?, $bug_open_date=?, $bug_close_date=?, $bug_severity_lvl=?, $bug_reporter=?,$bug_triager=?, $bug_developer=?, $bug_reviewer=? WHERE bug_id=?";
+	        if($stmt = $mysqli->prepare($sql))
+	        {
+	            // Bind variables to the prepared statement as parameters
+	            $stmt->bind_param("sssssissss", $param_title, $param_description, $param_status, $param_openDate, $param_closeDate, $param_severityLevel, $param_reporter, $param_triager, $param_developer, $param_reviewer);
+	            
+	            // Set parameters
+	            $param_title = $title;
+	            $param_description = $description;
+	            $param_status = $status;
+	            $param_openDate = $openDate;
+	            $param_closeDate = $closeDate;
+	            $param_severityLevel = $severityLevel;
+	            $param_reporter = $reporter;
+	            $param_triager = $triager;
+	            $param_developer = $developer;
+	            $param_reviewer = $reviewer;
+
+	            // Attempt to execute the prepared statement
+	            if($stmt->execute())
+	            {
+	                // Records updated successfully. Redirect to landing page
+	                header("location: index.php");
+	                exit();
+	            } else { echo "Something went wrong. Please try again later."; }
+	        }
+	         
+	        // Close statement
+	        $stmt->close();
+	    }
+	}
 	
 	function DeleteBugReport() {}
 	
