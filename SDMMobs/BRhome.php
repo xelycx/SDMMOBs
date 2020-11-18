@@ -96,27 +96,7 @@ button:hover
     padding: 16px;
 }
 
-#bugReportTable { 
-  border-collapse: collapse;
-  width: 100%;
-}
 
-#bugReportTable td, #bugReportTable th 
-{ 
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#bugReportTable tr:hover {background-color: #ddd;}
-
-#bugReportTable th 
-{
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #EE8A6E;
-  color: white;
-}
 
 #txtbox {
   width: 60%;
@@ -159,7 +139,7 @@ button:hover
   {
     echo $_SESSION['username'];
   }
-  ?></b>. Welcome to our site.</h1> 
+  ?></b>. Welcome to bug report system.</h1> 
 </header>
   
 <!-- Start of page content -->
@@ -182,54 +162,60 @@ button:hover
     <input id ="searchButton" type="submit" name="search" value="Search" />
 </form>
 <?php
-// Create connection 
-$mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
+  include_once("controller/BugReportController.php");
 
-$sql = "SELECT * FROM bugreports WHERE bug_status = 'open'";
+  $bugReportController = new BugReportController();
+  $bugReportController->invoke();
 
-if ($res = $mysqli->query($sql))
-{
-  if($res->num_rows > 0)
-  {
-    // Create table to display results 
-    echo "<h3><B>Bug Reports<B></h3>";
-    echo "<table id='bugReportTable'>\n";
-    //  echo "<thead class=\"thead-light\">\n";
-    echo "<tr>\n";
-    echo "<th field=\"col\">ID</th>";
-    echo "<th field=\"col\">Title</th>";
-    echo "<th field=\"col\">Description</th>";
-    echo "<th field=\"col\">Status</th>";
-    echo "<th field=\"col\">Open Date</th>";
-    echo "<th field=\"col\">Bug Close Date</th>";
-    echo "<th field=\"col\">Severity level</th>";
-    echo "<th field=\"col\">Action</th>";
 
-    echo "</tr>\n";
-    // echo "</thead>\n";
+// // Create connection 
+// $mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
 
-    while($row = $res->fetch_array())
-    {
-      echo "<tr>\n";
-      echo "<td>".$row['bug_id']."</td>";
-      echo "<td>".$row['bug_title']."</td>";
-      echo "<td>".$row['bug_description']."</td>";
-      echo "<td>".$row['bug_status']."</td>";
-      echo "<td>".$row['bug_open_date']."</td>";
-      echo "<td>".$row['bug_close_date']."</td>";
-      echo "<td>".$row['bug_severity_lvl']."</td>";
-      echo "<td>";
-        echo "<a href='read.php?bug_id=". $row['bug_id'] ."' title='View Report' data-toggle='tooltip'><img src=\"./assets./eye.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
-        echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Report' data-toggle='tooltip'><img src=\"./assets./pencil.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
-        echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Report' data-toggle='tooltip'><img src=\"./assets./bin.png\"  style=\"width:20px;height:20px;\"/></a>";
-      echo "</td>";
-      echo "</tr>\n";
-    }
-  }
-  else  {  echo "<h2>No Bug Report</h2>"; }
-  echo "</table>\n";
-  echo "<br>";
-}
+// $sql = "SELECT * FROM bugreports WHERE bug_status = 'open'";
+
+// if ($res = $mysqli->query($sql))
+// {
+//   if($res->num_rows > 0)
+//   {
+//     // Create table to display results 
+//     echo "<h3><B>Bug Reports<B></h3>";
+//     echo "<table id='bugReportTable'>\n";
+//     //  echo "<thead class=\"thead-light\">\n";
+//     echo "<tr>\n";
+//     echo "<th field=\"col\">ID</th>";
+//     echo "<th field=\"col\">Title</th>";
+//     echo "<th field=\"col\">Description</th>";
+//     echo "<th field=\"col\">Status</th>";
+//     echo "<th field=\"col\">Open Date</th>";
+//     echo "<th field=\"col\">Close Date</th>";
+//     echo "<th field=\"col\">Severity level</th>";
+//     echo "<th field=\"col\">Action</th>";
+
+//     echo "</tr>\n";
+//     // echo "</thead>\n";
+
+//     while($row = $res->fetch_array())
+//     {
+//       echo "<tr>\n";
+//       echo "<td>".$row['bug_id']."</td>";
+//       echo "<td>".$row['bug_title']."</td>";
+//       echo "<td>".$row['bug_description']."</td>";
+//       echo "<td>".$row['bug_status']."</td>";
+//       echo "<td>".$row['bug_open_date']."</td>";
+//       echo "<td>".$row['bug_close_date']."</td>";
+//       echo "<td>".$row['bug_severity_lvl']."</td>";
+//       echo "<td>";
+//         echo "<a href='read.php?bug_id=". $row['bug_id'] ."' title='View Report' data-toggle='tooltip'><img src=\"./assets./eye.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
+//         echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Report' data-toggle='tooltip'><img src=\"./assets./pencil.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
+//         echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Report' data-toggle='tooltip'><img src=\"./assets./bin.png\"  style=\"width:20px;height:20px;\"/></a>";
+//       echo "</td>";
+//       echo "</tr>\n";
+//     }
+//   }
+//   else  {  echo "<h2>No Bug Report</h2>"; }
+//   echo "</table>\n";
+//   echo "<br>";
+// }
 ?>
 
 <br />
