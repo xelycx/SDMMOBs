@@ -6,8 +6,8 @@ class BestDeveloperController {
 
 	function BestDeveloper(){
 
-		$fetchDeveloper = new Triager();
-		$result = $fetchDeveloper->getBestDeveloper();
+		$tmp_bestdev = new Triager();
+		$result = $tmp_bestdev->getBestDeveloper();
 		
 		return $result;
 	}
