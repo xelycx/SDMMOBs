@@ -6,8 +6,8 @@ class BestReporterController {
 
 	function BestReporter(){
 
-		$fetchReporter = new Triager();
-		$result = $fetchReporter->getBestReporter();
+		$tmp_bestreporter = new Triager();
+		$result = $tmp_bestreporter->getBestReporter();
 		
 		return $result;
 	}
