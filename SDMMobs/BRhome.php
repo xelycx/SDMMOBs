@@ -143,7 +143,7 @@ button:hover
 </header>
   
 <!-- Start of page content -->
-<div class="w3-content" style="max-width:1550px">
+<div class="w3-content" style="max-width:1920px">
 
 <!-- Body --> 
 <header class="w3-container w3-center w3-padding-48 w3-light-grey">
@@ -155,7 +155,7 @@ button:hover
         <option value="title">Title</option>
         <option value="keyword">Keyword</option>
         <option value="assignee">Assignee</option>    
-       
+     
     </select>
   </div>
     <input id="txtbox" type="text" name="search_word" required>

@@ -119,14 +119,18 @@ class BugReport
 	// 	else { return(0); }
 	// }
 
-	function UpdateBugReport($title, $description, $status, $openDate, $closeDate, $severityLevel, $reporter, $triager, $developer, $reviewer)
+	function UpdateBugReport($id, $title, $description, $status, $openDate, $closeDate, $severityLevel, $reporter, $triager, $developer, $reviewer)
 	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
 	    // Check input errors before inserting in database
-	    if(empty($title) && empty($description))
+	    if(!empty($title) && !empty($description))
 	    {
 	        // Prepare an update statement
-	        $sql = "UPDATE BugReports SET $bug_title=?, $bug_description=?, $bug_status=?, $bug_open_date=?, $bug_close_date=?, $bug_severity_lvl=?, $bug_reporter=?,$bug_triager=?, $bug_developer=?, $bug_reviewer=? WHERE bug_id=?";
-	        if($stmt = $mysqli->prepare($sql))
+	        $sql = "UPDATE BugReports SET bug_title=?, bug_description=?, bug_status=?, bug_open_date=?, bug_close_date=?, bug_severity_lvl=?, bug_reporter=?, bug_triager=?, bug_developer=?, bug_reviewer=? WHERE bug_id=$id";
+
+	        // $sql = "UPDATE BugReports SET bug_title=$title, bug_description=$description, bug_status=$status, bug_open_date=$openDate, bug_close_date=$closeDate, bug_severity_lvl=$severityLevel, bug_reporter=$reporter, bug_triager=$triager, bug_developer=$developer, bug_reviewer=$reviewer WHERE bug_id=$id";
+	        echo $sql;
+	        if($stmt = $this->db_handle->prepare($sql))
 	        {
 	            // Bind variables to the prepared statement as parameters
 	            $stmt->bind_param("sssssissss", $param_title, $param_description, $param_status, $param_openDate, $param_closeDate, $param_severityLevel, $param_reporter, $param_triager, $param_developer, $param_reviewer);
@@ -147,7 +151,7 @@ class BugReport
 	            if($stmt->execute())
 	            {
 	                // Records updated successfully. Redirect to landing page
-	                header("location: index.php");
+	                header("location: BRhome.php");//index.php
 	                exit();
 	            } else { echo "Something went wrong. Please try again later."; }
 	        }
@@ -157,7 +161,35 @@ class BugReport
 	    }
 	}
 	
-	function DeleteBugReport() {}
+	function DeleteBugReport()
+	{
+		//$this->db_handle = (new DataBaseConfig())->getConnection();
+	    // Prepare a delete statement
+	    $sql = "DELETE FROM BugReports WHERE bug_id = ?";
+	    
+	    if($stmt = $this->db_handle->prepare($sql)){
+	        // Bind variables to the prepared statement as parameters
+	        $stmt->bind_param("i", $param_id);
+	        
+	        // Set parameters
+	        $param_id = $this->get_id();//trim($_POST["bug_id"]);
+	        
+	        // Attempt to execute the prepared statement
+	        if($stmt->execute()){
+	            // Records deleted successfully. Redirect to landing page
+	            header("location: brhome.php");
+	            exit();
+	        } else{
+	            echo "Oops! Something went wrong. Please try again later.";
+	        }
+	    }
+	     
+	    // Close statement
+	    //$stmt->close();
+	    
+	    // Close connection
+	    //$this->db_handle->close();
+	}
 	
 	//other functions
 	
