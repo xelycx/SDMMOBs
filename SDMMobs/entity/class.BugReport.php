@@ -286,6 +286,52 @@ class BugReport
 			*/
 		}
 	}
+
+
+	function GetMonthlyReport()
+	{
+		// Create query
+		$sql = "SELECT * FROM bugreports";
+		$result = $db_handle->query($sql);
+		
+		return $result;
+	}
+	
+	function GetWeeklyReport()
+	{
+		// Create query
+		$sql = "SELECT CONCAT(YEAR(bug_open_date), '/ Week ', WEEK(bug_open_date,1)) AS weeklies, COUNT(*) AS TOTAL FROM bugreports WHERE bug_status='Closed' GROUP BY weeklies";
+		$result = $db_handle->query($sql);
+		
+		return $result;
+	}
+	
+	function GetWeeklyBugDate()
+	{
+		// Create query
+		$sql = "SELECT *, CONCAT(YEAR(bug_open_date), '/ Week ', WEEK(bug_open_date,1)) AS weeklies FROM bugreports WHERE bug_status='Closed'";
+		$result = $db_handle->query($sql);
+		
+		return $result;
+	}
+	
+	function GetBestReporter()
+	{
+		// Create query
+		$sql = "SELECT bug_reporter, count(*) AS TOTAL FROM 'bugreports' WHERE bug_reporter != '' GROUP BY bug_reporter";
+		$result = $db_handle->query($sql);
+		
+		return $result;
+	}
+	
+	function GetBestDeveloper()
+	{
+		// Create query
+		$sql = "SELECT bug_developer, count(*) AS TOTAL FROM 'bugreports' WHERE bug_developer != '' GROUP BY bug_developer";
+		$result = $db_handle->query($sql);
+		
+		return $result;
+	}
 }
 
 ?>
