@@ -132,7 +132,7 @@ button:hover
     </button>
     
   </div> 
-  <a href="out.php" style="float: right">Logout</a>
+  <a href="index.php" style="float: right">Logout</a>
 </div>
 
  <!-- Header -->
