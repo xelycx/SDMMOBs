@@ -2,7 +2,9 @@
 // Include config file
 include_once("entity/class.BugReport.php");
 include_once("entity/class.BugReporter.php");
- 
+
+session_start();
+
 // Define variables and initialize with empty values
 $tmp_bugReport = new BugReport();
 
@@ -31,47 +33,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     if(empty($input_severityLvl)) { $severityLvl_err = "Please enter the Severity Level ."; }
     elseif(!ctype_digit($input_severityLvl)) { $severityLvl_err = "Please enter a positive integer value."; }
     else { $severityLvl = $input_severityLvl; }
-
-    // Validate reporter
-    $input_reporter = trim($_POST["reporter"]);
-    if(empty($input_reporter)){ $reporter_err = "Please enter an reporter."; }
-    else{ $reporter = $input_reporter; }
-    
-    // // Check input errors before inserting in database
-    // if(empty($name_err) && empty($address_err) && empty($salary_err)){
-    //     // Prepare an insert statement
-    //     $sql = "INSERT INTO employees (name, address, salary) VALUES (?, ?, ?)";
- 
-    //     if($stmt = $mysqli->prepare($sql)){
-    //         // Bind variables to the prepared statement as parameters
-    //         $stmt->bind_param("sss", $param_name, $param_address, $param_salary);
-            
-    //         // Set parameters
-    //         $param_name = $name;
-    //         $param_address = $address;
-    //         $param_salary = $salary;
-            
-    //         // Attempt to execute the prepared statement
-    //         if($stmt->execute()){
-    //             // Records created successfully. Redirect to landing page
-    //             header("location: index.php");
-    //             exit();
-    //         } else{
-    //             echo "Something went wrong. Please try again later.";
-    //         }
-    //     }
-         
-    //     // Close statement
-    //     $stmt->close();
-    // }
-    
-    // // Close connection
-    // $mysqli->close();
-
-
-    // ($bug_id, $input_title, $input_description, $input_status,
-    //                                      $input_openDate, $input_closeDate, $input_severityLvl,
-    //                                       $input_reporter, $input_triager, $input_developer, $input_reviewer);
+	
+	$input_reporter = $_SESSION['username'];
 
     //insert to db
     $tmp_bugReport->CreateBugReport($input_reporter, $input_title, $input_description, $input_severityLvl);
@@ -124,11 +87,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 								<option value="3">5</option>
 							</select>
                             <span class="help-block"><?php echo $severityLvl_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($reporter_err)) ? 'has-error' : ''; ?>">
-                            <label>Reporter</label>
-                            <input type="text" name="reporter" class="form-control" value="<?php echo $reporter; ?>">
-                            <span class="help-block"><?php echo $reporter_err;?></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="brhome.php" class="btn btn-default">Cancel</a>
