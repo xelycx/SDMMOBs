@@ -42,7 +42,7 @@ if (isset($_POST['login-btn'])) {
     </style>
 </head>
 	<body>
-		<img src = "img1.png" alt="Car"style="float:right;width:600px;height:700px">
+		<img src = "assets/img1.png" alt="img1"style="float:right;width:500px;height:500px">
 		<div class="wrapper">
         <p>
         <h1><strong>Welcome to Bug Tracking System!</strong></h1>
