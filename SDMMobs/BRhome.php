@@ -107,9 +107,25 @@ button:hover
   box-sizing: border-box;
 }
 
+#txtbox2 {
+  width: 60%;
+  padding: 3px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
 .custom-select 
 {
     display: inline-block;
+}
+
+table.SearchTable
+{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 </style>
@@ -147,20 +163,70 @@ button:hover
 
 <!-- Body --> 
 <header class="w3-container w3-center w3-padding-48 w3-light-grey">
-<form action="searchRent.php" method="post">
+<!-- <form action="searchRent.php" method="post">
   <div class="container">
     Search by:
     <div class="custom-select">
-      <select name="type">
+      <select name="searchType">
         <option value="title">Title</option>
         <option value="keyword">Keyword</option>
-        <option value="assignee">Assignee</option>    
-     
-    </select>
+        <option value="assignee">Assignee</option>
+      </select>
   </div>
     <input id="txtbox" type="text" name="search_word" required>
     <input id ="searchButton" type="submit" name="search" value="Search" />
-</form>
+</form> -->
+<button onclick="document.location='createBugReport.php'">Create Bug Report</button>
+
+<!-- select change form -->
+<table class = "SearchTable">
+  <tr>
+    <!-- <td>Search By</td> -->
+    <td>
+    <select onchange="changeOptions(this)">
+      <option value="form_1">Title</option>
+      <option value="form_2">Keyword</option>
+      <option value="form_3">Assignee</option>
+    </select>
+    </td>
+    <td>
+    <form class="className" name="form_1" id="form_1" action="searchByTitle.php" method="post" style="display:block;">
+      <!---- THIS IS FORM 1---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+    <td>
+    <form class="className" name="form_2" id="form_2" action="searchByKeyword.php" method="post" style="display:none">
+      <!---- THIS IS FORM 2---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+    <td>
+    <form class="className" name="form_3" id="form_3" action="searchByAssignee.php" method="post" style="display:none">
+      <!---- THIS IS FORM 3---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+  </tr>
+</table>
+<!-- select change form js -->
+<script>
+function changeOptions(selectEl) {
+  let selectedValue = selectEl.options[selectEl.selectedIndex].value;
+  let subForms = document.getElementsByClassName('className')
+  for (let i = 0; i < subForms.length; i += 1) {
+    if (selectedValue === subForms[i].name) {
+      subForms[i].setAttribute('style', 'display:block')
+    } else {
+      subForms[i].setAttribute('style', 'display:none') 
+    }
+  }
+}
+</script>
+
 <?php
   include_once("controller/BugReportController.php");
 

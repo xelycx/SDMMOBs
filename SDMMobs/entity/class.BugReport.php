@@ -84,16 +84,20 @@ class BugReport
 	
 	//Functions
 	//basic CRUD
-	function CreateBugReport($reporter, $title, $keyword, $description, $bug_severity_lvl)
+	function CreateBugReport($reporter, $title, $description, $bug_severity_lvl)
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		if (!empty($title) && !empty($keyword) && !empty($description))
+		if (!empty($title) && !empty($description) && !empty($bug_severity_lvl) && !empty($reporter))
 		{
-			$bug_created = date('Y-m-d H:i:s');
-			$sql = "INSERT INTO bugreports (bug_reporter, bug_developer, bug_triager, bug_reviewer, bug_title, bug_keyword, bug_description, bug_status, bug_open_date, bug_severity_lvl)
-									VALUES ('$reporter', '', '', '', '$title', '$keyword', '$description', 'Open', '$bug_created', '$bug_severity_lvl')";
-			
-			if ($db_handle->query($sql) === TRUE) { return(1); }
+			$bug_open_date = date('Y-m-d H:i:s');
+			$sql = "INSERT INTO bugreports (bug_reporter, bug_developer, bug_triager, bug_reviewer, bug_title, bug_description, bug_status, bug_open_date, bug_severity_lvl)
+									VALUES ('$reporter', '', '', '', '$title', '$description', 'Open', '$bug_open_date', '$bug_severity_lvl')";
+
+			if ($this->db_handle->query($sql) === TRUE)
+			{
+				header("location: BRhome.php");//index.php
+				return(1);
+			}
 			else { echo "Error: " . $sql . "<br>" . $this->db_handle->error; }
 			$this->db_handle->close();
 		}
@@ -159,6 +163,8 @@ class BugReport
 	        // Close statement
 	        $stmt->close();
 	    }
+	    // Close connection
+    	$db_handle->close();
 	}
 	
 	function DeleteBugReport()

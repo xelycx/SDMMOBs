@@ -73,7 +73,7 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
     if(empty($input_developer)){ $developer_err = "Please enter an developer."; }
     else{ $developer = $input_developer; }
 
-    // Validate reporter
+    // Validate reviewer
     $input_reviewer = trim($_POST["reviewer"]);
     if(empty($input_reviewer)){ $reviewer_err = "Please enter an reviewer."; }
     else{ $reviewer = $input_reviewer; }
@@ -83,8 +83,6 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
                                      $input_openDate, $input_closeDate, $input_severityLvl,
                                       $input_reporter, $input_triager, $input_developer, $input_reviewer);
 
-    // Close connection
-    $db_handle->close();
 }
 else
 {
