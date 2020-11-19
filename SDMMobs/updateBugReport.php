@@ -90,6 +90,12 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
 	$openDate = $result->bug_open_date;
 	$closeDate = $result->bug_close_date;
 	
+	//if(preg_match_all($input_status, "Closed"))
+	if($input_status === "Closed")
+	{
+		$closeDate = date('Y-m-d H:i:s');
+	}
+	
     $tmp_bugReport->UpdateBugReport($bug_id, $input_title, $input_description, $input_status,
                                      $openDate, $closeDate, $input_severityLvl,
                                       $input_reporter, $input_triager, $input_developer, $input_reviewer);
