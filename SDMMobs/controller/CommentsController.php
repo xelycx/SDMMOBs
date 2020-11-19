@@ -18,6 +18,13 @@ class CommentsController
 		include 'boundary/CommentsView.php';
 	}
 
+	public function CreateComment($bug_id, $commentTxt, $user_id)
+	{
+		// show the comments
+		$commentObj = new comment();
+		$commentObj->CreateComment($bug_id, $commentTxt, $user_id);
+	}
+
 }
 
 ?>

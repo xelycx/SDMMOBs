@@ -38,14 +38,14 @@ class Comment
 	
 	
 	//Functions
-	function CreateComment($comment_id, $bug_id, $comment, $user_id)
+	function CreateComment($bug_id, $comment, $user_id)
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		if (!empty($comment_id) && !empty($bug_id) && !empty($comment) && !empty($user_id))
+		if (!empty($bug_id) && !empty($comment) && !empty($user_id))
 		{
 			$commentDate = date('Y-m-d H:i:s');
-			$sql = "INSERT INTO comments (comment_id, bug_id, comment, user_id, comment_datetime)
-									VALUES ('$comment_id', '$bug_id', '$comment', '$user_id', '$commentDate')";
+			$sql = "INSERT INTO comments (bug_id, comment, user_id, comment_datetime)
+								VALUES ('$bug_id', '$comment', '$user_id', '$commentDate')";
 
 			if ($this->db_handle->query($sql) === TRUE)
 			{
