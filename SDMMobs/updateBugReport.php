@@ -3,12 +3,10 @@
 require_once "entity/class.BugReport.php";
  
 // Define variables and initialize with empty values
-// $name = $address = $salary = "";
-// $name_err = $address_err = $salary_err = "";
-
 $title = $description = $status = $openDate = $closeDate = $severityLvl = $reporter = $triager = $developer = $reviewer ="";
 $title_err = $description_err = $status_err = $openDate_err = $closeDate_err = $severityLvl_err = $reporter_err = $triager_err = $developer_err = $reviewer_err = "";
- $tmp_bugReport = new BugReport();
+$tmp_bugReport = new BugReport();
+
 // Processing form data when form is submitted
 if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
     // Get hidden input value
@@ -85,7 +83,6 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
                                      $input_openDate, $input_closeDate, $input_severityLvl,
                                       $input_reporter, $input_triager, $input_developer, $input_reviewer);
 
-    
     // Close connection
     $db_handle->close();
 }
