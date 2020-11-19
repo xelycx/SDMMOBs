@@ -3,7 +3,7 @@ session_start();
  
 include_once('Results.php');
 $result = new Results();
-
+$type = $search_word = $title = $keyword = "";
 if (isset($_POST['search'])) {
 	$type = $_POST['type'];
 	$search_word = $_POST['search_word'];

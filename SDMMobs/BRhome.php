@@ -132,16 +132,18 @@ table.SearchTable
 <?php
 // Start the session
 session_start();
+$type = $search_word = $title = $keyword = $result = "";
+// include_once('Results.php');
+// $result = new Results();
 
-include_once('Results.php');
-$result = new Results();
+//if (isset($_POST['search']))
+// {
+	// $type;// = $_POST['type'];
+	// $search_word;// = $_POST['search_word'];
+	// $title = "title";
+	// $keyword = "keyword";
+// }
 
-if (isset($_POST['search'])) {
-	$type = $_POST['type'];
-	$search_word = $_POST['search_word'];
-	$title = "title";
-	$keyword = "keyword";
-}
 
 ?>
 
@@ -236,7 +238,7 @@ if (isset($_POST['search'])) {
   if(isset($_SESSION["username"]) && $_SESSION["username"])
   {
     echo $_SESSION['username'];
-	echo $_SESSION['user_role'];
+	echo " (".$_SESSION['user_role'].")";
   }
   ?></b>. Welcome to bug report system.</h1> 
 </header>
@@ -246,20 +248,7 @@ if (isset($_POST['search'])) {
 
 <!-- Body --> 
 <header class="w3-container w3-center w3-padding-48 w3-light-grey">
-<!-- <form action="searchRent.php" method="post">
-  <div class="container">
-    Search by:
-    <div class="custom-select">
-      <select name="searchType">
-        <option value="title">Title</option>
-        <option value="keyword">Keyword</option>
-        <option value="assignee">Assignee</option>
-      </select>
-  </div>
-    <input id="txtbox" type="text" name="search_word" required>
-    <input id ="searchButton" type="submit" name="search" value="Search" />
-</form> -->
-
+<!--
 <form action="result.php" method="post">
   <div class="container">
     Search by:
@@ -274,127 +263,17 @@ if (isset($_POST['search'])) {
     <input id="txtbox" type="text" name="search_word" required>
     <input id ="button" type="submit" name="search" value="Search" />
 </form>
-
+-->
+<button onclick="document.location='result.php'">Search</button>
 <button onclick="document.location='createBugReport.php'">Create Bug Report</button>
 
-<!-- select change form -->
-<table class = "SearchTable">
-  <tr>
-    <!-- <td>Search By</td> -->
-    <td>
-    <select onchange="changeOptions(this)">
-      <option value="form_1">Title</option>
-      <option value="form_2">Keyword</option>
-      <option value="form_3">Assignee</option>
-    </select>
-    </td>
-    <td>
-    <form class="className" name="form_1" id="form_1" action="searchByTitle.php" method="post" style="display:block;">
-      <!---- THIS IS FORM 1---->
-      <input id="txtbox2" type="text" name="search_word" required>
-      <input id ="searchButton2" type="submit" name="search" value="Search" />
-    </form>
-    </td>
-    <td>
-    <form class="className" name="form_2" id="form_2" action="searchByKeyword.php" method="post" style="display:none">
-      <!---- THIS IS FORM 2---->
-      <input id="txtbox2" type="text" name="search_word" required>
-      <input id ="searchButton2" type="submit" name="search" value="Search" />
-    </form>
-    </td>
-    <td>
-    <form class="className" name="form_3" id="form_3" action="searchByAssignee.php" method="post" style="display:none">
-      <!---- THIS IS FORM 3---->
-      <input id="txtbox2" type="text" name="search_word" required>
-      <input id ="searchButton2" type="submit" name="search" value="Search" />
-    </form>
-    </td>
-  </tr>
-</table>
-<!-- select change form js -->
-<script>
-function changeOptions(selectEl) {
-  let selectedValue = selectEl.options[selectEl.selectedIndex].value;
-  let subForms = document.getElementsByClassName('className')
-  for (let i = 0; i < subForms.length; i += 1) {
-    if (selectedValue === subForms[i].name) {
-      subForms[i].setAttribute('style', 'display:block')
-    } else {
-      subForms[i].setAttribute('style', 'display:none') 
-    }
-  }
-}
-</script>
 
 <?php
-  include_once("controller/BugReportController.php");
+	include_once("controller/BugReportController.php");
 
-  $bugReportController = new BugReportController();
-  $bugReportController->invoke();
-  
-  
+	$bugReportController = new BugReportController();
+	$bugReportController->invoke();
 
-if ($type == $title)
-{
-	echo $result->searchByTitle($search_word);
-}
-else if ($type == $keyword)
-{
-	echo $result->searchByKeyword($search_word);
-}
-else if ($type == $Assignee)
-{
-	echo $result->searchByAssignee($search_word);
-}
-
-// // Create connection 
-// $mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
-
-// $sql = "SELECT * FROM bugreports WHERE bug_status = 'open'";
-
-// if ($res = $mysqli->query($sql))
-// {
-//   if($res->num_rows > 0)
-//   {
-//     // Create table to display results 
-//     echo "<h3><B>Bug Reports<B></h3>";
-//     echo "<table id='bugReportTable'>\n";
-//     //  echo "<thead class=\"thead-light\">\n";
-//     echo "<tr>\n";
-//     echo "<th field=\"col\">ID</th>";
-//     echo "<th field=\"col\">Title</th>";
-//     echo "<th field=\"col\">Description</th>";
-//     echo "<th field=\"col\">Status</th>";
-//     echo "<th field=\"col\">Open Date</th>";
-//     echo "<th field=\"col\">Close Date</th>";
-//     echo "<th field=\"col\">Severity level</th>";
-//     echo "<th field=\"col\">Action</th>";
-
-//     echo "</tr>\n";
-//     // echo "</thead>\n";
-
-//     while($row = $res->fetch_array())
-//     {
-//       echo "<tr>\n";
-//       echo "<td>".$row['bug_id']."</td>";
-//       echo "<td>".$row['bug_title']."</td>";
-//       echo "<td>".$row['bug_description']."</td>";
-//       echo "<td>".$row['bug_status']."</td>";
-//       echo "<td>".$row['bug_open_date']."</td>";
-//       echo "<td>".$row['bug_close_date']."</td>";
-//       echo "<td>".$row['bug_severity_lvl']."</td>";
-//       echo "<td>";
-//         echo "<a href='read.php?bug_id=". $row['bug_id'] ."' title='View Report' data-toggle='tooltip'><img src=\"./assets./eye.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
-//         echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Report' data-toggle='tooltip'><img src=\"./assets./pencil.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
-//         echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Report' data-toggle='tooltip'><img src=\"./assets./bin.png\"  style=\"width:20px;height:20px;\"/></a>";
-//       echo "</td>";
-//       echo "</tr>\n";
-//     }
-//   }
-//   else  {  echo "<h2>No Bug Report</h2>"; }
-//   echo "</table>\n";
-//   echo "<br>";
-// }
 ?>
 
 <br />

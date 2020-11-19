@@ -69,7 +69,7 @@ class User
 				$_SESSION['username'] = $this->username;
 				$_SESSION['user_role'] = $row['user_role'];
 				$_SESSION['isLoggedIn'] = TRUE;
-				
+				$_SESSION['user_id'] = $row['user_id'];
 				$stmt->close();
 				return true;
 			}

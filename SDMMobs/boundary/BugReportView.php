@@ -1,3 +1,8 @@
+<?php
+// Start the session
+session_start();
+?>
+
 <html>
 <head></head>
 <style>
@@ -32,10 +37,7 @@
 }
 
 </style>
-<?php
-// Start the session
-session_start();
-?>
+
 <body>
 
 <div class="center">
@@ -59,7 +61,7 @@ session_start();
 		include_once("controller/CommentsController.php");
 		$commentCtrl = new CommentsController();
 		$commentCtrl->DisplayComments($bug->bug_id);
-		$user_id = 1;//get current logged in user_id
+		$user_id = 1;//$_SESSION['user_id'];//get current logged in user_id
 		if(isset($_POST['createCommentButton']))
 		{ 
 			$commentTxt = htmlspecialchars($_POST['commentTextarea']);
@@ -73,7 +75,8 @@ session_start();
     </form> 
   
 <button class="button backButton">
-	<a href="#" onclick="location.href = document.referrer; return false;">Back</a>
+	<!-- <a href="#" onclick="location.href = document.referrer; return false;">Back</a> -->
+  <a href="brhome.php">Back</a>
 </button>
 </div>
 </body>
