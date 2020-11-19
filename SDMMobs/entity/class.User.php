@@ -109,14 +109,19 @@ class User
 	
 	function GetUser($user_id)
 	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
 		$query = "SELECT * FROM user WHERE user_id = $user_id";
 		$result = mysqli_query($this->db_handle, $query);
-
-		return $result;
+		$user = mysqli_fetch_object($result);
+		
+		$this->db_handle->close();
+		if(!$user){ echo "User does not exist with the ID"; }
+		return $user;
 	}
 	
 	function GetUserList()
 	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
 		$query = "SELECT * FROM user";
 		$result = mysqli_query($this->db_handle, $query);
 

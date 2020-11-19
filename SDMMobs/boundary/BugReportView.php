@@ -50,8 +50,13 @@
 		echo '<B>Triager: </B>' . $bug->bug_triager . '<br/><br/>';
 		echo '<B>Assignee: </B>' . $bug->bug_developer . '<br/><br/>';
 		echo '<B>Reviewer: </B>' . $bug->bug_reviewer . '<br/><br/>';
-		echo '<B>Comments: </B>' . "" . '<br/><br/>';
+		//echo '<B>Comments: </B>' . "" . '<br/><br/>';
+		
+		include_once("controller/CommentsController.php");
+		$commentCtrl = new CommentsController();
+		$commentCtrl->DisplayComments($bug->bug_id);
 	?>
+  
 <button class="button backButton">
 	<a href="#" onclick="location.href = document.referrer; return false;">Back</a>
 </button>
