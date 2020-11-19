@@ -188,7 +188,7 @@ $type = $search_word = $title = $keyword = $result = "";
                           </button>
                           <div class="dropdown-content">
                             <a href="GenerateReport.php"> Generate Report</a>
-                            <a href="AssignedBugReport.php">Pending Assignment</a>            
+                            <a href="AssignedBugReport.php">Assigned</a>            
                           </div>
                         </div> 
             
