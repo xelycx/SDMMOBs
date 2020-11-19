@@ -41,6 +41,7 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
     if(empty($input_status)){ $status_err = "Please enter an status."; }
     else{ $status = $input_status; }
 
+	/*
     // Validate openDate
     $input_openDate = trim($_POST["openDate"]);
     if(empty($input_openDate)){ $openDate_err = "Please enter an Open Date."; }
@@ -50,7 +51,8 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
     $input_closeDate = trim($_POST["closeDate"]);
     if(empty($input_closeDate)){ $closeDate_err = "Please enter an Close Date."; }
     else{ $closeDate = $input_closeDate; }
-
+	*/
+	
     // // Validate severityLvl
     // $input_severityLvl = trim($_POST["severityLvl"]);
     // if(empty($input_severityLvl)){ $severityLvl_err = "Please enter an Severity Level."; }
@@ -83,8 +85,13 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
     else{ $reviewer = $input_reviewer; }
 
     $tmp_bugReport->set_id($bug_id);
+	
+	$result = $tmp_bugReport->ViewBugReport($bug_id);
+	$openDate = $result->bug_open_date;
+	$closeDate = $result->bug_close_date;
+	
     $tmp_bugReport->UpdateBugReport($bug_id, $input_title, $input_description, $input_status,
-                                     $input_openDate, $input_closeDate, $input_severityLvl,
+                                     $openDate, $closeDate, $input_severityLvl,
                                       $input_reporter, $input_triager, $input_developer, $input_reviewer);
 
 }
@@ -197,6 +204,10 @@ else
 							</select>
                             <span class="help-block"><?php echo $status_err;?></span>
                         </div>
+						<div><label>Open Date:&nbsp</label><?php echo $openDate; ?></div><br>
+						<div><label>Close Date:&nbsp</label><?php echo $closeDate; ?></div><br>
+						
+						<!--
                         <div class="form-group <?php echo (!empty($openDate_err)) ? 'has-error' : ''; ?>">
                             <label>Open Date</label>
                             <input type="text" name="openDate" class="form-control" value="<?php echo $openDate; ?>" disabled>
@@ -207,6 +218,8 @@ else
                             <input type="text" name="closeDate" class="form-control" value="<?php echo $closeDate; ?>" disabled>
                             <span class="help-block"><?php echo $closeDate_err;?></span>
                         </div>
+						-->
+						
                         <div class="form-group <?php echo (!empty($severityLvl_err)) ? 'has-error' : ''; ?>">
                             <label for="Bug_severity_lvl">Severity Level</label>
 							<br>
