@@ -1,66 +1,82 @@
+<?php
+include 'LoginController.php'; 
+session_start();
+
+$login = new LoginController();
+$errors = [];
+
+if (isset($_POST['login-btn'])) {
+	
+	if (empty($_POST['username']) || empty($_POST['password'])) {
+		$errors['error'] = 'Wrong username or password';
+	}
+	
+	if (!preg_match('/^[a-z\d_]{2,20}$/i', $_POST['username'])) {
+		$errors['error'] = 'Wrong username or password';
+	}
+
+	if(count($errors) === 0) {
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		$_isLoggedIn= $login->validateLogin($username, $password);
+		
+		if(!$_isLoggedIn) {
+			$errors['login_fail'] = "Wrong username or password";
+		}
+	}
+}
+
+
+?>
+
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<?php  
- include 'database.php';  
- session_start();  
- $data = new Databases;  
- $message = '';  
- if(isset($_POST["login"]))  
- {  
-      $field = array(  
-           'username'     =>     $_POST["username"],  
-           'password'     =>     $_POST["password"],
-      );  
-      if($data->required_validation($field))  
-      {  
-           if($data->can_login("users", $field))  
-           {  
-                $_SESSION["username"] = $_POST["username"];  
-                header("location:login_success.php");  
-           }  
-           else  
-           {  
-                $message = $data->error;  
-           }  
-      }  
-      else  
-      {  
-           $message = $data->error;  
-      }  
- }  
- ?>  
- <!DOCTYPE html>  
- <html>  
-      <head>  
-           <title>SDMMOBS </title>  
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-      </head>  
-      <body>  
-           <br />  
-           <div class="container" style="width:500px;">  
-                <h3 align="">Login Form in PHP using OOP</h3><br />  
-                <?php  
-                if(isset($message))  
-                {  
-                     echo '<label class="text-danger">'.$message.'</label>';  
-                }  
-                ?>  
-                <form method="post">  
-                     <label>Username</label>  
-                     <input type="text" name="username" class="form-control" />  
-                     <br />  
-                     <label>Password</label>  
-                     <input type="password" name="password" class="form-control" />  
-                     <br />  
-                     <input type="submit" name="login" class="btn btn-info" value="Login" />  
-                </form>  
-           </div>  
-           <br />  
-      </body>  
- </html>  
+<html lang="en">
+	<head>
+		<title>Bug Tracking System - Login</title>
+	
+	</head>
+	<body>
+		
+		<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100 p-t-50 p-b-90">
+					<form class="login100-form flex-sb flex-w" method="post">
+						<span class="login100-form-title p-b-51">
+							Bug Tracking System
+							<br>
+							Login
+						</span>
+						<?php if (count($errors) > 0): ?> <!--If there are any error messages in the $errors array, we need to display them on the form.-->
+							<div class="alert alert-danger validate-input m-b-16">
+							<?php foreach ($errors as $error): ?>
+							<li>
+								<?php echo $error; ?>
+							</li>
+							<?php endforeach;?>
+							</div>
+						<?php endif;?>
+						<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+							<input class="input100" type="text" name="username" placeholder="Username">
+							<span class="focus-input100"></span>
+						</div>
+						
+						<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+							<input class="input100" type="password" name="password" placeholder="Password">
+							<span class="focus-input100"></span>
+						</div>
+						
+						<div class="container-login100-form-btn m-t-17">
+							<button type="submit" name="login-btn" class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+
+
+	</body>
+</html>
