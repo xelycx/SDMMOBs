@@ -74,12 +74,21 @@
 {
   display: block;
 }
+#search 
+{
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
-#searchButton 
+#button 
 {
   background-color: #EE8A6E;
   color: white;
-  padding: 3px 10px;
+  padding: 12px 10px;
   margin: 8px 0;
   border: 1PX;
   cursor: pointer;
@@ -96,11 +105,31 @@ button:hover
     padding: 16px;
 }
 
+#carTable { 
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#carTable td, #carTable th 
+{ 
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#carTable tr:hover {background-color: #ddd;}
+
+#carTable th 
+{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #EE8A6E;
+  color: white;
+}
 
 #txtbox {
-  width: 60%;
-  padding: 3px 20px;
+  width: 20%;
+  padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -110,6 +139,7 @@ button:hover
 .custom-select 
 {
     display: inline-block;
+
 }
 
 </style>
@@ -117,20 +147,18 @@ button:hover
 
 <!-- Navigation bar -->
 <div class="navbar">
-  <a href="BRhome.php" class="w3-bar-item w3-button">Home <i class="fa fa-home"></i></a>
-  <div class="dropdown-content">
-      <a href="ReportBug.php">Report Bug</a>
-      <a href="generateReport.php"> Generate Report</a>
-    </div>
+  <a href="Rhome.php" class="w3-bar-item w3-button">Home <i class="fa fa-home"></i></a>
   <div class="dropdown">
-    <button class="dropbtn"><?php
-      session_start();
-      
-      echo $_SESSION['user_role'];   
-              ?> Account <i class='fa fa-user'></i> 
+    <button class="dropbtn">Reviewer Account <i class='fa fa-user'></i> 
       <i class="fa fa-caret-down"></i>
     </button>
-    
+    <div class="dropdown-content"> 
+      <!--update status and update & assign developer comment -->
+      <a href="updatebugstatus.php">Update Bug Status </a>
+     
+     
+     
+    </div>
   </div> 
   <a href="index.php" style="float: right">Logout</a>
 </div>
@@ -139,9 +167,12 @@ button:hover
 <header class="w3-container w3-center w3-padding-30 w3-white">
   <h1 >Hi,<b> 
   <?php 
-
-  echo $_SESSION['user_role'];
-  ?></b>. Welcome to bug report system.</h1> 
+  session_start();
+  if(isset($_SESSION["username"]) && $_SESSION["username"])
+  {
+    echo $_SESSION['username'];
+  }
+  ?></b>. Welcome to our site.</h1> 
 </header>
   
 <!-- Start of page content -->
@@ -161,16 +192,58 @@ button:hover
     </select>
   </div>
     <input id="txtbox" type="text" name="search_word" required>
-    <input id ="searchButton" type="submit" name="search" value="Search" />
+    <input id ="button" type="submit" name="search" value="Search" />
 </form>
 <?php
-  include_once("BugReportController.php");
+// Create connection 
+$mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
 
-  $bugReportController = new BugReportController();
-  $bugReportController->invoke();
+$sql = "SELECT * FROM bugreports";
 
 
+if ($res = $mysqli->query($sql))
+{
+  if($res->num_rows > 0)
+  {
+    // Create table to display results 
+    echo "<h2>Bug Report</h2>";
+    echo "<table id='carTable'>\n";
+  //  echo "<thead class=\"thead-light\">\n";
+    echo "<tr>\n";
+    echo "<th field=\"col\">ID</th>";
+    echo "<th field=\"col\">Bug_Title</th>";
+    echo "<th field=\"col\">Bug_Description</th>";
+    echo "<th field=\"col\">Bug_keyword</th>";
+    echo "<th field=\"col\">Bug_Status</th>";
+    echo "<th field=\"col\">Bug_Open_Date</th>";
+    echo "<th field=\"col\">Bug_Close_Date</th>";
+    echo "<th field=\"col\">Severity_level</th>";
+ 
 
+    echo "</tr>\n";
+   // echo "</thead>\n";
+  
+    while($row = $res->fetch_array())
+    {
+      echo "<tr>\n";
+      echo "<th field=\"row\">". $row['bug_id']."</th>";
+      echo "<td>".$row['bug_title']."</td>";
+      echo "<td>".$row['bug_description']."</td>";
+      echo "<td>".$row['bug_status']."</td>";
+      echo "<td>".$row['bug_open_date']."</td>";
+      echo "<td>".$row['bug_close_date']."</td>";
+      echo "<td>".$row['bug_severity_lvl']."</td>";
+     // echo "<td>".$row['overdue']."</td>";
+      echo "</tr>\n";
+    }
+  }
+  else 
+  { 
+    echo "<h2>No Bug Report</h2>";
+  }
+  echo "</table>\n";
+  echo "<br>";
+}
 ?>
 
 <br />
