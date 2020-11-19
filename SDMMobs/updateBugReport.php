@@ -204,7 +204,7 @@ else
                             <select id="bug_status" name="status">
 							  <option value="Open">Open</option>
 							  <option value="Assigned">Assigned</option>
-							  <option value="PendingReview">Pending Review</option>
+							  <option value="Pending Review">Pending Review</option>
 							  <option value="Reviewed">Reviewed</option>
 							  <option value="Closed">Closed</option>
 							</select>
