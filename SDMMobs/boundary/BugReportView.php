@@ -65,13 +65,12 @@ session_start();
 		if(isset($_POST['createCommentButton']))
 		{ 
 			$commentTxt = htmlspecialchars($_POST['commentTextarea']);
-      $commentCtrl->CreateComment($bug->bug_id, $commentTxt, $user_id);
-    }
+			$commentCtrl->CreateComment($bug->bug_id, $commentTxt, $user_id);
+		}
 
 
 	?>
 	<form method="post" onsubmit="setTimeout(function(){window.location.reload();},10);"> 
-		<!-- <input type="textarea" name="commentTextarea" value=""/> -->
     <textarea name="commentTextarea" class="form-control" rows="5" cols="100"></textarea><br><br>
     <input type="submit" name="createCommentButton" value="Comment"/>
   </form>

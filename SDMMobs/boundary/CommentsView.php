@@ -60,7 +60,7 @@
 						if(mysqli_num_rows($comments)>0)
 						{
 							// Create table to display results 
-						    echo "<h3><B>".mysqli_num_rows($comments)." Comments<B></h3>";
+						    echo "<h3><B>".mysqli_num_rows($comments)." Comments</B></h3>";
 						    echo "<table id='commentsTable'>\n";
 							$userCtrl = new UserController();
 						    while($row = mysqli_fetch_assoc($comments))
@@ -69,15 +69,14 @@
 						      echo "<tr>";
 								  echo "<td>";
 									//echo "User ID: ".$row['user_id']. " ";
-									echo $userCtrl->GetUserNameById($uid);
+									echo "<U><B>".$userCtrl->GetUserNameById($uid)."</U></B>";
 								  echo "</td>";
 								  echo "<td>" . "Comment Date: ".$row['comment_datetime']."</td>";
 							  echo "</tr>";
 							  echo "<tr>";
 								  echo "<td>".$row['comment']."</td>";
 							  echo "</tr>";
-							  //echo "<br>";
-							  //echo "<tr> fdg</tr>";
+							  echo "<td><hr></td>";
 						    }
 						  }
 						  else  {  echo "<h2>No Bug Report</h2>"; }
