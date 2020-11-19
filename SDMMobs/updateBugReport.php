@@ -1,7 +1,11 @@
 <?php
 // Include config file
 require_once "entity/class.BugReport.php";
- 
+
+session_start();
+
+//echo $_SESSION['user_role'];
+
 // Define variables and initialize with empty values
 $title = $description = $status = $openDate = $closeDate = $severityLvl = $reporter = $triager = $developer = $reviewer ="";
 $title_err = $description_err = $status_err = $openDate_err = $closeDate_err = $severityLvl_err = $reporter_err = $triager_err = $developer_err = $reviewer_err = "";

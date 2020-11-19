@@ -32,6 +32,10 @@
 }
 
 </style>
+<?php
+// Start the session
+session_start();
+?>
 <body>
 
 <div class="center">

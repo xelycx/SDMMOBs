@@ -129,12 +129,17 @@ table.SearchTable
 }
 
 </style>
+<?php
+// Start the session
+session_start();
+?>
+
 <body class="w3-light-grey">
 
 <!-- Navigation bar -->
 <div class="navbar">
   <a href="BRhome.php" class="w3-bar-item w3-button">Home <i class="fa fa-home"></i></a>
-  <div class="dropdown">
+<!--  <div class="dropdown">
     <button class="dropbtn">Bug Reporter Account <i class='fa fa-user'></i> 
       <i class="fa fa-caret-down"></i>
     </button>
@@ -142,7 +147,74 @@ table.SearchTable
       <a href="ReportBug.php">Report Bug</a>
       <a href="PostComment.php"> Generate Report</a>
     </div>
-  </div> 
+  </div> -->
+     <?php
+                  if ($_SESSION['user_role'] == "triager")
+                  {
+                    echo'
+                     <div class="dropdown">
+                          <button class="dropbtn">Bug Triager Account <i class=\'fa fa-user\'></i> 
+                            <i class="fa fa-caret-down"></i>
+                          </button>
+                          <div class="dropdown-content">
+                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="open.php">open</a>
+                            <a href="reviewed.php">reviewed</a>
+                            <a href="closed.php">Closed</a>   
+                          </div>
+                        </div> 
+                        ';
+                  }
+
+                  else if ($_SESSION['user_role'] == "developer")
+                  {
+                    echo'
+                      <div class="dropdown">
+                          <button class="dropbtn">Bug Developer Account <i class=\'fa fa-user\'></i> 
+                            <i class="fa fa-caret-down"></i>
+                          </button>
+                          <div class="dropdown-content">
+                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="pendingAssign.php">Pending Assignment</a>            
+                          </div>
+                        </div> 
+            
+                    ';
+                  }
+                  else if ($_SESSION['user_role'] == "reviewer")
+                  {
+                    echo'
+                      <div class="dropdown">
+                          <button class="dropbtn">Bug  Reviewer Account <i class=\'fa fa-user\'></i> 
+                            <i class="fa fa-caret-down"></i>
+                          </button>
+                          <div class="dropdown-content">
+                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="pendingReview.php">Pending Review</a>
+                            
+                          </div>
+                        </div> 
+              
+                    ';
+                  }
+                  else if ($_SESSION['user_role'] == "bugreporter")
+                  {
+                    echo'
+                    <div class="dropdown">
+                          <button class="dropbtn">Bug  Reporter Account <i class=\'fa fa-user\'></i> 
+                            <i class="fa fa-caret-down"></i>
+                          </button>
+                          <div class="dropdown-content">
+                           <a href="reportBug.php"> Report Bug</a>
+                            <a href="generateReport.php"> Generate Report</a>
+                            
+                          </div>
+                        </div>
+                
+                    ';
+                  }    
+              ?>
+  
   <a href="index.php" style="float: right">Logout</a>
 </div>
 
@@ -150,10 +222,10 @@ table.SearchTable
 <header class="w3-container w3-center w3-padding-30 w3-white">
   <h1 >Hi,<b> 
   <?php 
-  session_start();
   if(isset($_SESSION["username"]) && $_SESSION["username"])
   {
     echo $_SESSION['username'];
+	echo $_SESSION['user_role'];
   }
   ?></b>. Welcome to bug report system.</h1> 
 </header>
