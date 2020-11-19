@@ -119,28 +119,6 @@ button:hover
     padding: 16px;
 }
 
-#carTable { 
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#carTable td, #carTable th 
-{ 
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#carTable tr:hover {background-color: #ddd;}
-
-#carTable th 
-{
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #EE8A6E;
-  color: white;
-}
-
 #txtbox {
   width: 20%;
   padding: 12px 20px;
@@ -153,10 +131,55 @@ button:hover
 .custom-select 
 {
     display: inline-block;
+}
 
+#bugReportTable { 
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#bugReportTable td, #bugReportTable th 
+{ 
+  border: 2px solid #000;
+  padding: 5px;
+}
+
+#bugReportTable tr:hover {background-color: #ddd;}
+
+#bugReportTable th 
+{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #EE8A6E;
+  color: white;
 }
 
 </style>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <style type="text/css">
+        .wrapper{
+            width: 1300px;
+            margin: 0 auto;
+        }
+        .page-header h2{
+            margin-top: 0;
+        }
+        table tr td:last-child a{
+            margin: 0px 2px 0px 2px;
+        }
+    </style>
+	
+	<script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
+</head>
+
 <body class="w3-light-grey">
 
 <!-- Navigation bar -->
@@ -185,9 +208,9 @@ button:hover
   ?>
   </b>. Welcome to our site.</h1> 
 </header>
-  
+
 <!-- Start of page content -->
-<div class="w3-content" style="max-width:1550px">
+<div class="w3-content" style="max-width:1920px">
 
 <!-- Body --> 
 <header class="w3-container w3-center w3-padding-48 w3-light-grey">
@@ -206,33 +229,56 @@ button:hover
     <input id ="button" type="submit" name="search" value="Search" />
 </form>
 
-<h3 style="padding-bottom: 15px; color: #0a7ecd;">Results</h3>
-	<table id="tableData" width="100%" style="border: 2px solid #434C57; padding: 15px; font-size: 16px;">
-	<tr>
-		<th>ID</th>
-		<th>Bug_Title</th>
-		<th>Bug_Description</th>
-		<th>Bug_Status</th>
-		<th>Bug_Open_Date</th>
-		<th>Bug_Closed_Date</th>
-		<th>Severity_level</th>
-		<th>Bug Reporter</th>
-		<th>Triager</th>
-		<th>Assignee</th>
-		<th>Reviewer</th>
-	</tr>
-	<?php
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<table>
+					<?php
+						//if(mysqli_num_rows($bugs)>0)
+						{
+							// Create table to display results 
+						    echo "<h3><B>Bug Reports<B></h3>";
+						    echo "<table id='bugReportTable'>\n";
+						    //  echo "<thead class=\"thead-light\">\n";
+						    echo "<tr>\n";
+						    echo "<th field=\"col\">ID</th>";
+						    echo "<th field=\"col\">Title</th>";
+						    echo "<th field=\"col\">Description</th>";
+						    echo "<th field=\"col\">Status</th>";
+						    echo "<th field=\"col\">Open Date</th>";
+						    echo "<th field=\"col\">Close Date</th>";
+						    echo "<th field=\"col\">Severity level</th>";
+						    echo "<th field=\"col\">Bug Reporter</th>";
+						    echo "<th field=\"col\">Triager</th>";
+						    echo "<th field=\"col\">Assignee</th>";
+						    echo "<th field=\"col\">Reviewer</th>";
+						    echo "<th field=\"col\">Action</th>";
 
-	if ($type == $title) {
-		echo $result->searchByTitle($search_word);
-		
-	}else if ($type == $keyword){
-		echo $result->searchByKeyword($search_word);
+						    echo "</tr>\n";
+						    // echo "</thead>\n";
 
-	}else{
-		echo $result->searchByAssignee($search_word);
-	}
-	?>
-</table>
+							if ($type == $title)
+							{
+								echo $result->searchByTitle($search_word);
+							}
+							else if ($type == $keyword)
+							{
+								echo $result->searchByKeyword($search_word);
+							}
+							else
+							{
+								echo $result->searchByAssignee($search_word);
+							}
+						  }
+						  //else  {  echo "<h2>No Bug Report</h2>"; }
+						  echo "</table>\n";
+						  echo "<br>";
+					?>
+				</table>
+			</div>
+		</div>        
+	</div>
+</div>
 </body>
 </html>

@@ -132,6 +132,17 @@ table.SearchTable
 <?php
 // Start the session
 session_start();
+
+include_once('Results.php');
+$result = new Results();
+
+if (isset($_POST['search'])) {
+	$type = $_POST['type'];
+	$search_word = $_POST['search_word'];
+	$title = "title";
+	$keyword = "keyword";
+}
+
 ?>
 
 <body class="w3-light-grey">
@@ -248,9 +259,6 @@ session_start();
     <input id="txtbox" type="text" name="search_word" required>
     <input id ="searchButton" type="submit" name="search" value="Search" />
 </form> -->
-<button onclick="document.location='createBugReport.php'">Create Bug Report</button>
-
-
 
 <form action="result.php" method="post">
   <div class="container">
@@ -267,28 +275,42 @@ session_start();
     <input id ="button" type="submit" name="search" value="Search" />
 </form>
 
+<button onclick="document.location='createBugReport.php'">Create Bug Report</button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- select change form -->
+<table class = "SearchTable">
+  <tr>
+    <!-- <td>Search By</td> -->
+    <td>
+    <select onchange="changeOptions(this)">
+      <option value="form_1">Title</option>
+      <option value="form_2">Keyword</option>
+      <option value="form_3">Assignee</option>
+    </select>
+    </td>
+    <td>
+    <form class="className" name="form_1" id="form_1" action="searchByTitle.php" method="post" style="display:block;">
+      <!---- THIS IS FORM 1---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+    <td>
+    <form class="className" name="form_2" id="form_2" action="searchByKeyword.php" method="post" style="display:none">
+      <!---- THIS IS FORM 2---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+    <td>
+    <form class="className" name="form_3" id="form_3" action="searchByAssignee.php" method="post" style="display:none">
+      <!---- THIS IS FORM 3---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+  </tr>
+</table>
 <!-- select change form js -->
 <script>
 function changeOptions(selectEl) {
@@ -309,7 +331,21 @@ function changeOptions(selectEl) {
 
   $bugReportController = new BugReportController();
   $bugReportController->invoke();
+  
+  
 
+if ($type == $title)
+{
+	echo $result->searchByTitle($search_word);
+}
+else if ($type == $keyword)
+{
+	echo $result->searchByKeyword($search_word);
+}
+else if ($type == $Assignee)
+{
+	echo $result->searchByAssignee($search_word);
+}
 
 // // Create connection 
 // $mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
