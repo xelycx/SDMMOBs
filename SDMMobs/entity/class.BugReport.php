@@ -266,8 +266,8 @@ class BugReport
 		$query = "SELECT * FROM BugReports WHERE bug_description LIKE '%$keyword%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
-		$bugreport = mysqli_fetch_assoc($result);
-		return $bugreport;
+		//$bugreport = mysqli_fetch_assoc($result);
+		return $result;
 	}
 	
 	function SearchForBugByTitle($title)
@@ -275,8 +275,8 @@ class BugReport
 		$query = "SELECT * FROM BugReports WHERE bug_title LIKE '%$title%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
-		$bugreport = mysqli_fetch_assoc($result);
-		return $bugreport;
+		//$bugreport = mysqli_fetch_assoc($result);
+		return $result;
 	}
 	
 	function SearchForBugByAssignee($assignee)
@@ -284,8 +284,8 @@ class BugReport
 		$query = "SELECT * FROM BugReports WHERE bug_developer LIKE '%$assignee%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
-		$bugreport = mysqli_fetch_assoc($result);
-		return $bugreport;
+		//$bugreport = mysqli_fetch_assoc($result);
+		return $result;
 	}
 	
 	function AddComment($comment)

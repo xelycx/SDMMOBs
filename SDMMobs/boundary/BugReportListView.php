@@ -145,38 +145,7 @@
 						  echo "</table>\n";
 						  echo "<br>";
 
-
-
-
-							
-							echo "Number of bug reports: " . mysqli_num_rows($bugs);
-							
-							// foreach ($bugs as $title => $bug)
-							// {
-								// echo '<tr>
-								// <td>
-								// <a href="indexbugreportlist.php?bug='.$bug->title.'">'.$bug->stripslashes(title).'
-								// </a>
-								// </td>
-								// <td>'.$bug->description.'
-								// </td>
-								// <td>'.$bug->status.'
-								// </td>
-								// <td>'.$bug->assignee.'
-								// </td>
-								// <td>'.$bug->Status.'
-								// </td>
-								// <td>'.$bug->createDate.'
-								// </td>
-								// <td>'.$bug->closeDate.'
-								// </td>
-								// <td>'.$bug->severityLevel.'
-								// </td>
-								// </tr>';
-							// }
-							
-						//}
-
+						  echo "Number of bug reports: " . mysqli_num_rows($bugs);
 					?>
 				</table>
 			</div>
