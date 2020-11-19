@@ -170,7 +170,7 @@ $type = $search_word = $title = $keyword = $result = "";
                             <i class="fa fa-caret-down"></i>
                           </button>
                           <div class="dropdown-content">
-                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="GenerateReport.php"> Generate Report</a>
                             <a href="open.php">open</a>
                             <a href="reviewed.php">reviewed</a>
                             <a href="closed.php">Closed</a>   
@@ -187,7 +187,7 @@ $type = $search_word = $title = $keyword = $result = "";
                             <i class="fa fa-caret-down"></i>
                           </button>
                           <div class="dropdown-content">
-                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="GenerateReport.php"> Generate Report</a>
                             <a href="pendingAssign.php">Pending Assignment</a>            
                           </div>
                         </div> 
@@ -202,7 +202,7 @@ $type = $search_word = $title = $keyword = $result = "";
                             <i class="fa fa-caret-down"></i>
                           </button>
                           <div class="dropdown-content">
-                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="GenerateReport.php"> Generate Report</a>
                             <a href="pendingReview.php">Pending Review</a>
                             
                           </div>
@@ -218,7 +218,7 @@ $type = $search_word = $title = $keyword = $result = "";
                             <i class="fa fa-caret-down"></i>
                           </button>
                           <div class="dropdown-content">
-                            <a href="generateReport.php"> Generate Report</a>
+                            <a href="GenerateReport.php"> Generate Report</a>
                           </div>
                         </div>
                 
