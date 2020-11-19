@@ -114,8 +114,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             <span class="help-block"><?php echo $description_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($severityLvl_err)) ? 'has-error' : ''; ?>">
-                            <label>Severity level</label>
-                            <input type="text" name="severityLvl" class="form-control" value="">
+                            <label for="severityLvl">Severity Level</label>
+							<br>
+							<select id="severityLvl" name="severityLvl">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="3">4</option>
+								<option value="3">5</option>
+							</select>
                             <span class="help-block"><?php echo $severityLvl_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($reporter_err)) ? 'has-error' : ''; ?>">
