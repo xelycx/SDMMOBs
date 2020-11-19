@@ -1,5 +1,5 @@
 <?php
-include 'user.php'; 
+include 'entity/class.user.php'; 
 
 /*
 	List of functions in LoginController
