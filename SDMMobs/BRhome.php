@@ -218,9 +218,7 @@ $type = $search_word = $title = $keyword = $result = "";
                             <i class="fa fa-caret-down"></i>
                           </button>
                           <div class="dropdown-content">
-                           <a href="reportBug.php"> Report Bug</a>
                             <a href="generateReport.php"> Generate Report</a>
-                            
                           </div>
                         </div>
                 
