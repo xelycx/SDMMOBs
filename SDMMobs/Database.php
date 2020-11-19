@@ -1,56 +1,21 @@
-<?php   
- //database.php  Controller
- class Databases{  
-      public $con;  
-      public $error;  
-      public function __construct()  
-      {  
-           $this->con = mysqli_connect("localhost", "root", "", "SDMMobs");  
-           if(!$this->con)  
-           {  
-                echo 'Database Connection Error ' . mysqli_connect_error($this->con);  
-           }  
-      }  
-      public function required_validation($field)  
-      {  
-           $count = 0;  
-           foreach($field as $key => $value)  
-           {  
-                if(empty($value))  
-                {  
-                     $count++;  
-                     $this->error .= "<p>" . $key . " is required</p>";  
-                }  
-           }  
-           if($count == 0)  
-           {  
-                return true;  
-           }  
-      }  
-      public function can_login($table_name, $where_condition)  
-      {  
-           $condition = '';  
-           foreach($where_condition as $key => $value)  
-           {  
-                $condition .= $key . " = '".$value."' AND ";  
-           }  
-           $condition = substr($condition, 0, -5);  
-           /*This code will convert array to string like this-  
-           input - array(  
-                'id'     =>     '5'  
-           )  
-           output = id = '5'*/  
-           $query = "SELECT * FROM ".$table_name." WHERE " . $condition;  
-           $result = mysqli_query($this->con, $query);  
-           if(mysqli_num_rows($result))  
-           {  
-                return true;  
-           }  
-           else  
-           {  
-                $this->error = "Wrong Data";  
-           }  
-      }       
- }  
- ?>  
+<?php
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'sdmmobs');
 
+class DatabaseConfig
+{
+	public $connection;
+	function __construct()
+	{
+		$this->connection = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD,DB_DATABASE);
+		
+		if ($this->connection->connect_error) die('Database error -> ' . $this->connection->connect_error);
+		
+	}
+	
+	function getConnection() { return $this->connection; }
+
+}
+?>

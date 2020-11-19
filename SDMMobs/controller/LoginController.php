@@ -1,5 +1,5 @@
 <?php
-include 'user.php'; 
+include 'entity/class.User.php'; 
 
 /*
 	List of functions in LoginController
@@ -12,9 +12,9 @@ include 'user.php';
 class LoginController {
 	
 	function validateLogin($username, $password) {
-		$user = new Users();
-		$user->setUsername($username);
-		$user->setPassword($password);
+		$user = new User();
+		$user->set_userName($username);
+		$user->set_password($password);
 		
 		if ($user->login())	{
 		$_SESSION["username"] = $_POST["username"];
@@ -42,8 +42,8 @@ class LoginController {
 	}
 	
 	function session() {
-		$user = new Users();
-		$user->getUserRole($user_role);
+		$user = new User();
+		$user->get_userRole($user_role);
 		if (!$user->session()) {
 			header('location: index.php');
 		}

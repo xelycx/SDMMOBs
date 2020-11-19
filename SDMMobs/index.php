@@ -1,5 +1,5 @@
 <?php
-include 'LoginController.php'; 
+include 'controller/LoginController.php'; 
 session_start();
 
 $login = new LoginController();
