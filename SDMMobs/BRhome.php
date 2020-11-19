@@ -171,9 +171,9 @@ $type = $search_word = $title = $keyword = $result = "";
                           </button>
                           <div class="dropdown-content">
                             <a href="GenerateReport.php"> Generate Report</a>
-                            <a href="open.php">open</a>
-                            <a href="reviewed.php">reviewed</a>
-                            <a href="closed.php">Closed</a>   
+                            <a href="OpenBugReport.php">Open</a>
+							<a href="ClosedBugReport.php">Closed</a> 
+                            <a href="ReviewedBugReport.php">Reviewed</a>
                           </div>
                         </div> 
                         ';

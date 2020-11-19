@@ -371,6 +371,33 @@ class BugReport
 		return $result;
 	}
 
+	function GetOpenBugReport()
+	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
+		$query = "SELECT * FROM BugReports WHERE bug_status = 'Open' ";
+		$result = mysqli_query($this->db_handle, $query);
+		//$this->db_handle->close();
+		return $result;
+	}
+
+	function GetClosedBugReport()
+	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
+		$query = "SELECT * FROM BugReports WHERE bug_status = 'Closed' ";
+		$result = mysqli_query($this->db_handle, $query);
+		//$this->db_handle->close();
+		return $result;
+	}
+
+	function GetReviewedBugReport()
+	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
+		$query = "SELECT * FROM BugReports WHERE bug_status = 'Reviewed' ";
+		$result = mysqli_query($this->db_handle, $query);
+		//$this->db_handle->close();
+		return $result;
+	}
+
 	function GetAssignedBugReport($username)
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
