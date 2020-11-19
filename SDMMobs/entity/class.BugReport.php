@@ -371,6 +371,15 @@ class BugReport
 		return $result;
 	}
 
+	function GetAssignedBugReport($username)
+	{
+		$this->db_handle = (new DataBaseConfig())->getConnection();
+		$query = "SELECT * FROM BugReports WHERE bug_status = 'Assigned' AND bug_developer LIKE '%$username%' ";
+		$result = mysqli_query($this->db_handle, $query);
+		//$this->db_handle->close();
+		return $result;
+	}
+
 	function GetPendingReviewBugReport()
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
