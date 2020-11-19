@@ -60,7 +60,7 @@
 						if(mysqli_num_rows($comments)>0)
 						{
 							// Create table to display results 
-						    echo "<h3><B>Comments<B></h3>";
+						    echo "<h3><B>".mysqli_num_rows($comments)." Comments<B></h3>";
 						    echo "<table id='commentsTable'>\n";
 							$userCtrl = new UserController();
 						    while($row = mysqli_fetch_assoc($comments))
@@ -83,7 +83,6 @@
 						  else  {  echo "<h2>No Bug Report</h2>"; }
 						  echo "</table>\n";
 						  echo "<br>";
-						  echo "Total Comments: " . mysqli_num_rows($comments);
 					?>
 				</table>
 			</div>
