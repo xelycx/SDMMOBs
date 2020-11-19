@@ -186,23 +186,37 @@ else
                             <span class="help-block"><?php echo $description_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($status_err)) ? 'has-error' : ''; ?>">
-                            <label>Status</label>
-                            <input type="text" name="status" class="form-control" value="<?php echo $status; ?>">
+                            <label for="bug_status">Status</label>
+							<br>
+                            <select id="bug_status" name="status">
+							  <option value="Open">Open</option>
+							  <option value="Assign">Assigned</option>
+							  <option value="PendingReview">Pending Review</option>
+							  <option value="Reviewed">Reviewed</option>
+							  <option value="Closed">Closed</option>
+							</select>
                             <span class="help-block"><?php echo $status_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($openDate_err)) ? 'has-error' : ''; ?>">
                             <label>Open Date</label>
-                            <input type="text" name="openDate" class="form-control" value="<?php echo $openDate; ?>">
+                            <input type="text" name="openDate" class="form-control" value="<?php echo $openDate; ?>" disabled>
                             <span class="help-block"><?php echo $openDate_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($closeDate_err)) ? 'has-error' : ''; ?>">
                             <label>Close Date</label>
-                            <input type="text" name="closeDate" class="form-control" value="<?php echo $closeDate; ?>">
+                            <input type="text" name="closeDate" class="form-control" value="<?php echo $closeDate; ?>" disabled>
                             <span class="help-block"><?php echo $closeDate_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($severityLvl_err)) ? 'has-error' : ''; ?>">
-                            <label>Severity level</label>
-                            <input type="text" name="severityLvl" class="form-control" value="<?php echo $severityLvl; ?>">
+                            <label for="Bug_severity_lvl">Severity Level</label>
+							<br>
+							<select id="Bug_severity_lvl" name="severitylvl">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="3">4</option>
+								<option value="3">5</option>
+							</select>
                             <span class="help-block"><?php echo $severityLvl_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($reporter_err)) ? 'has-error' : ''; ?>">
