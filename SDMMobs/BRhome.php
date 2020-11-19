@@ -143,7 +143,7 @@ table.SearchTable
       <a href="PostComment.php"> Generate Report</a>
     </div>
   </div> 
-  <a href="logout.php" style="float: right">Logout</a>
+  <a href="index.php" style="float: right">Logout</a>
 </div>
 
  <!-- Header -->
