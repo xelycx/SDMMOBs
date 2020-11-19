@@ -32,25 +32,22 @@ if (isset($_POST['login-btn'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bug Tracking System - Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 700px; padding: 20px; }
-    </style>
-</head>
+	<head>
+		<title>Bug Tracking System - Login</title>
+	
+	</head>
 	<body>
-		<img src = "assets/img1.png" alt="img"style="float:right;width:500px;height:500px">
-		<div class="wrapper">
-        <p>
-        <h1><strong>Welcome to Bug Tracking System!</strong></h1>
-        </p>
-        <br />
-
-        <h2>User Login</h2>
-        <?php if (count($errors) > 0): ?> <!--If there are any error messages in the $errors array, we need to display them on the form.-->
+		
+		<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100 p-t-50 p-b-90">
+					<form class="login100-form flex-sb flex-w" method="post">
+						<span class="login100-form-title p-b-51">
+							Bug Tracking System
+							<br>
+							Login
+						</span>
+						<?php if (count($errors) > 0): ?> <!--If there are any error messages in the $errors array, we need to display them on the form.-->
 							<div class="alert alert-danger validate-input m-b-16">
 							<?php foreach ($errors as $error): ?>
 							<li>
@@ -59,25 +56,26 @@ if (isset($_POST['login-btn'])) {
 							<?php endforeach;?>
 							</div>
 						<?php endif;?>
-        <p>Please fill in your credentials to login.</p>
-        <form action="" method="post">
-
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Enter name" required>
-            </div>   
-
-             <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
-            </div>  
-    
-            <div class="form-group">
-                <input type="submit" name = "login-btn" class="btn btn-primary" value="Login">
-            </div>
-            
-        </form>
-    </div>		
+						<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+							<input class="input100" type="text" name="username" placeholder="Username">
+							<span class="focus-input100"></span>
+						</div>
+						
+						<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+							<input class="input100" type="password" name="password" placeholder="Password">
+							<span class="focus-input100"></span>
+						</div>
+						
+						<div class="container-login100-form-btn m-t-17">
+							<button type="submit" name="login-btn" class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
 
 
 	</body>
