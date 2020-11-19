@@ -74,21 +74,12 @@
 {
   display: block;
 }
-#search 
-{
-  width: 20%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
 
-#button 
+#searchButton 
 {
   background-color: #EE8A6E;
   color: white;
-  padding: 12px 10px;
+  padding: 3px 10px;
   margin: 8px 0;
   border: 1PX;
   cursor: pointer;
@@ -105,31 +96,20 @@ button:hover
     padding: 16px;
 }
 
-#carTable { 
-  border-collapse: collapse;
-  width: 100%;
-}
 
-#carTable td, #carTable th 
-{ 
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#carTable tr:hover {background-color: #ddd;}
-
-#carTable th 
-{
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #EE8A6E;
-  color: white;
-}
 
 #txtbox {
-  width: 20%;
-  padding: 12px 20px;
+  width: 60%;
+  padding: 3px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#txtbox2 {
+  width: 60%;
+  padding: 3px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -139,7 +119,13 @@ button:hover
 .custom-select 
 {
     display: inline-block;
+}
 
+table.SearchTable
+{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 </style>
@@ -155,10 +141,9 @@ button:hover
     <div class="dropdown-content">
       <a href="ReportBug.php">Report Bug</a>
       <a href="PostComment.php"> Generate Report</a>
-     
     </div>
   </div> 
-  <a href="index.php" style="float: right">Logout</a>
+  <a href="logout.php" style="float: right">Logout</a>
 </div>
 
  <!-- Header -->
@@ -170,79 +155,134 @@ button:hover
   {
     echo $_SESSION['username'];
   }
-  ?></b>. Welcome to our site.</h1> 
+  ?></b>. Welcome to bug report system.</h1> 
 </header>
   
 <!-- Start of page content -->
-<div class="w3-content" style="max-width:1550px">
+<div class="w3-content" style="max-width:1920px">
 
 <!-- Body --> 
 <header class="w3-container w3-center w3-padding-48 w3-light-grey">
-<form action="searchRent.php" method="post">
+<!-- <form action="searchRent.php" method="post">
   <div class="container">
     Search by:
     <div class="custom-select">
-      <select name="type">
+      <select name="searchType">
         <option value="title">Title</option>
         <option value="keyword">Keyword</option>
-        <option value="assignee">Assignee</option>    
-       
-    </select>
+        <option value="assignee">Assignee</option>
+      </select>
   </div>
     <input id="txtbox" type="text" name="search_word" required>
-    <input id ="button" type="submit" name="search" value="Search" />
-</form>
-<?php
-// Create connection 
-$mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
+    <input id ="searchButton" type="submit" name="search" value="Search" />
+</form> -->
+<button onclick="document.location='createBugReport.php'">Create Bug Report</button>
 
-$sql = "SELECT * FROM bugreports ";
-
-
-if ($res = $mysqli->query($sql))
-{
-  if($res->num_rows > 0)
-  {
-    // Create table to display results 
-    echo "<h2>Bug Report</h2>";
-    echo "<table id='carTable'>\n";
-  //  echo "<thead class=\"thead-light\">\n";
-    echo "<tr>\n";
-    echo "<th field=\"col\">ID</th>";
-    echo "<th field=\"col\">Bug_Title</th>";
-    echo "<th field=\"col\">Bug_Description</th>";
-    echo "<th field=\"col\">Bug_Status</th>";
-    echo "<th field=\"col\">Bug_Open_Date</th>";
-    echo "<th field=\"col\">Bug_Closed_Date</th>";
-    echo "<th field=\"col\">Severity_level</th>";
- 
-
-    echo "</tr>\n";
-   // echo "</thead>\n";
-  
-    while($row = $res->fetch_array())
-    {
-      echo "<tr>\n";
-      echo "<th field=\"row\">". $row['bug_id']."</th>";
-      echo "<td>".$row['bug_title']."</td>";
-      echo "<td>".$row['bug_description']."</td>";
-      echo "<td>".$row['bug_status']."</td>";
-      echo "<td>".$row['bug_open_date']."</td>";
-      echo "<td>".$row['bug_close_date']."</td>";
-      echo "<td>".$row['bug_severity_lvl']."</td>";
-     // echo "<td>".$row['overdue']."</td>";
-      echo "</tr>\n";
+<!-- select change form -->
+<table class = "SearchTable">
+  <tr>
+    <!-- <td>Search By</td> -->
+    <td>
+    <select onchange="changeOptions(this)">
+      <option value="form_1">Title</option>
+      <option value="form_2">Keyword</option>
+      <option value="form_3">Assignee</option>
+    </select>
+    </td>
+    <td>
+    <form class="className" name="form_1" id="form_1" action="searchByTitle.php" method="post" style="display:block;">
+      <!---- THIS IS FORM 1---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+    <td>
+    <form class="className" name="form_2" id="form_2" action="searchByKeyword.php" method="post" style="display:none">
+      <!---- THIS IS FORM 2---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+    <td>
+    <form class="className" name="form_3" id="form_3" action="searchByAssignee.php" method="post" style="display:none">
+      <!---- THIS IS FORM 3---->
+      <input id="txtbox2" type="text" name="search_word" required>
+      <input id ="searchButton2" type="submit" name="search" value="Search" />
+    </form>
+    </td>
+  </tr>
+</table>
+<!-- select change form js -->
+<script>
+function changeOptions(selectEl) {
+  let selectedValue = selectEl.options[selectEl.selectedIndex].value;
+  let subForms = document.getElementsByClassName('className')
+  for (let i = 0; i < subForms.length; i += 1) {
+    if (selectedValue === subForms[i].name) {
+      subForms[i].setAttribute('style', 'display:block')
+    } else {
+      subForms[i].setAttribute('style', 'display:none') 
     }
   }
-  else 
-  { 
-    echo "<h2>No Bug Report</h2>";
-  }
-  echo "</table>\n";
-  echo "<br>";
 }
+</script>
+
+<?php
+  include_once("controller/BugReportController.php");
+
+  $bugReportController = new BugReportController();
+  $bugReportController->invoke();
+
+
+// // Create connection 
+// $mysqli = new mysqli('localhost', 'root', '', 'SDMMobs');
+
+// $sql = "SELECT * FROM bugreports WHERE bug_status = 'open'";
+
+// if ($res = $mysqli->query($sql))
+// {
+//   if($res->num_rows > 0)
+//   {
+//     // Create table to display results 
+//     echo "<h3><B>Bug Reports<B></h3>";
+//     echo "<table id='bugReportTable'>\n";
+//     //  echo "<thead class=\"thead-light\">\n";
+//     echo "<tr>\n";
+//     echo "<th field=\"col\">ID</th>";
+//     echo "<th field=\"col\">Title</th>";
+//     echo "<th field=\"col\">Description</th>";
+//     echo "<th field=\"col\">Status</th>";
+//     echo "<th field=\"col\">Open Date</th>";
+//     echo "<th field=\"col\">Close Date</th>";
+//     echo "<th field=\"col\">Severity level</th>";
+//     echo "<th field=\"col\">Action</th>";
+
+//     echo "</tr>\n";
+//     // echo "</thead>\n";
+
+//     while($row = $res->fetch_array())
+//     {
+//       echo "<tr>\n";
+//       echo "<td>".$row['bug_id']."</td>";
+//       echo "<td>".$row['bug_title']."</td>";
+//       echo "<td>".$row['bug_description']."</td>";
+//       echo "<td>".$row['bug_status']."</td>";
+//       echo "<td>".$row['bug_open_date']."</td>";
+//       echo "<td>".$row['bug_close_date']."</td>";
+//       echo "<td>".$row['bug_severity_lvl']."</td>";
+//       echo "<td>";
+//         echo "<a href='read.php?bug_id=". $row['bug_id'] ."' title='View Report' data-toggle='tooltip'><img src=\"./assets./eye.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
+//         echo "<a href='update.php?bug_id=". $row['bug_id'] ."' title='Update Report' data-toggle='tooltip'><img src=\"./assets./pencil.png\"  style=\"width:20px;height:20px;\"/></a>&nbsp&nbsp";
+//         echo "<a href='delete.php?bug_id=". $row['bug_id'] ."' title='Delete Report' data-toggle='tooltip'><img src=\"./assets./bin.png\"  style=\"width:20px;height:20px;\"/></a>";
+//       echo "</td>";
+//       echo "</tr>\n";
+//     }
+//   }
+//   else  {  echo "<h2>No Bug Report</h2>"; }
+//   echo "</table>\n";
+//   echo "<br>";
+// }
 ?>
- 
 
 <br />
 </html>
