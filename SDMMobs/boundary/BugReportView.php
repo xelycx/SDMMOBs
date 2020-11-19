@@ -61,18 +61,17 @@ session_start();
 		include_once("controller/CommentsController.php");
 		$commentCtrl = new CommentsController();
 		$commentCtrl->DisplayComments($bug->bug_id);
-		$user_id = 1;//$_SESSION['user_id'];//get current logged in user_id
+		$user_id = $_SESSION['user_id'];//get current logged in user_id
 		if(isset($_POST['createCommentButton']))
 		{ 
 			$commentTxt = htmlspecialchars($_POST['commentTextarea']);
       $commentCtrl->CreateComment($bug->bug_id, $commentTxt, $user_id);
     }
 	?>
-	<form method="post"> 
+	<form method="post" onsubmit="setTimeout(function(){window.location.reload();},10);"> 
 		<input type="textarea" name="commentTextarea" value=""/>
-        <input type="submit" name="createCommentButton" value="Comment"/>
-		
-    </form> 
+    <input type="submit" name="createCommentButton" value="Comment"/>
+  </form>
   
 <button class="button backButton">
 	<!-- <a href="#" onclick="location.href = document.referrer; return false;">Back</a> -->
