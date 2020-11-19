@@ -250,40 +250,45 @@ session_start();
 </form> -->
 <button onclick="document.location='createBugReport.php'">Create Bug Report</button>
 
-<!-- select change form -->
-<table class = "SearchTable">
-  <tr>
-    <!-- <td>Search By</td> -->
-    <td>
-    <select onchange="changeOptions(this)">
-      <option value="form_1">Title</option>
-      <option value="form_2">Keyword</option>
-      <option value="form_3">Assignee</option>
+
+
+<form action="result.php" method="post">
+  <div class="container">
+    Search by:
+    <div class="custom-select">
+      <select name="type">
+        <option value="title">Title</option>
+        <option value="keyword">Keyword</option>
+        <option value="assignee">Assignee</option>    
+       
     </select>
-    </td>
-    <td>
-    <form class="className" name="form_1" id="form_1" action="searchByTitle.php" method="post" style="display:block;">
-      <!---- THIS IS FORM 1---->
-      <input id="txtbox2" type="text" name="search_word" required>
-      <input id ="searchButton2" type="submit" name="search" value="Search" />
-    </form>
-    </td>
-    <td>
-    <form class="className" name="form_2" id="form_2" action="searchByKeyword.php" method="post" style="display:none">
-      <!---- THIS IS FORM 2---->
-      <input id="txtbox2" type="text" name="search_word" required>
-      <input id ="searchButton2" type="submit" name="search" value="Search" />
-    </form>
-    </td>
-    <td>
-    <form class="className" name="form_3" id="form_3" action="searchByAssignee.php" method="post" style="display:none">
-      <!---- THIS IS FORM 3---->
-      <input id="txtbox2" type="text" name="search_word" required>
-      <input id ="searchButton2" type="submit" name="search" value="Search" />
-    </form>
-    </td>
-  </tr>
-</table>
+  </div>
+    <input id="txtbox" type="text" name="search_word" required>
+    <input id ="button" type="submit" name="search" value="Search" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- select change form js -->
 <script>
 function changeOptions(selectEl) {
