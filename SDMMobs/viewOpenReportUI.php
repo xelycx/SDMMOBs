@@ -38,12 +38,10 @@
 </style>
 
 <?php
-require_once "entity/class.BugReport.php";
+	include_once("controller/viewOpenReportController.php");
 
-$tmp_br = new BugReport();
-echo "<br><center><h1><B>Open Bug Reports</B></h1></center>";
-$bugs = $tmp_br->GetOpenBugReport();
-include 'boundary/BugReportListView.php';
+	$rptCtrl = new viewOpenReportController();
+	$rptCtrl->getOpen();
 
 ?>
 <br>

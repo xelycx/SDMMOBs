@@ -171,7 +171,7 @@ $type = $search_word = $title = $keyword = $result = "";
                           </button>
                           <div class="dropdown-content">
                             <a href="GenerateReport.php"> Generate Report</a>
-                            <a href="OpenBugReport.php">Open</a>
+                            <a href="viewOpenReportUI.php">Open</a>
 							<a href="ClosedBugReport.php">Closed</a> 
                             <a href="ReviewedBugReport.php">Reviewed</a>
                           </div>
