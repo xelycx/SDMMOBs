@@ -3,4 +3,5 @@
 
 	$bugReportController = new BugReportController();
 	$bugReportController->display();
+	include_once("BackButton.php");
 ?>

@@ -74,11 +74,11 @@ session_start();
     <textarea name="commentTextarea" class="form-control" rows="5" cols="100"></textarea><br><br>
     <input type="submit" name="createCommentButton" value="Comment"/>
   </form>
-  
+<!--
 <button class="button backButton">
-	<!-- <a href="#" onclick="location.href = document.referrer; return false;">Back</a> -->
   <a href="brhome.php">Back</a>
 </button>
+-->
 </div>
 </body>
 </html>
