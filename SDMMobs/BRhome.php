@@ -262,16 +262,17 @@ $type = $search_word = $title = $keyword = $result = "";
     <input id ="button" type="submit" name="search" value="Search" />
 </form>
 -->
-<button onclick="document.location='search.php'">Search</button>
+<!--<button onclick="document.location='search.php'">Search</button>-->
 <button onclick="document.location='createBugReport.php'" <?php if ($_SESSION["user_role"] != 'bugreporter'){ ?> hidden <?php   } ?>>Create Bug Report</button>
 
 
 <?php
-	include_once("controller/BugReportController.php");
+	// include_once("controller/BugReportController.php");
 
-	$bugReportController = new BugReportController();
-	$bugReportController->display();
-
+	// $bugReportController = new BugReportController();
+	// $bugReportController->display();
+	
+	include_once("search.php");
 ?>
 
 <br />

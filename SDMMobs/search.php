@@ -52,9 +52,9 @@ if (isset($_POST['search'])) {
 }
 </style>
 
-<form action="search.php" method="post">
+<form action="BRhome.php" method="post">
 <div class="container">
-	<br><br><br>
+	<br><br>
 	<div class="custom-select">
 		Search by:
 			<select name="type">
@@ -99,9 +99,10 @@ if (isset($_POST['search'])) {
 	}
 
 ?>
-
+<!--
 <br>
 <div class="container">
     <button class="button buttonBack" value="Back" onclick="window.location.href='/SDMMobs/BRhome.php'">Back</button>
 </div>
 <br>
+-->
