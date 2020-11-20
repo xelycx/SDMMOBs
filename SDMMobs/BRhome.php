@@ -172,8 +172,8 @@ $type = $search_word = $title = $keyword = $result = "";
                           <div class="dropdown-content">
                             <a href="GenerateReport.php"> Generate Report</a>
                             <a href="viewOpenReportUI.php">Open</a>
-							<a href="ClosedBugReport.php">Closed</a> 
-                            <a href="ReviewedBugReport.php">Reviewed</a>
+							<a href="viewClosedReportUI.php">Closed</a> 
+                            <a href="viewReviewedReportUI.php">Reviewed</a>
                           </div>
                         </div> 
                         ';
@@ -188,7 +188,7 @@ $type = $search_word = $title = $keyword = $result = "";
                           </button>
                           <div class="dropdown-content">
                             <a href="GenerateReport.php"> Generate Report</a>
-                            <a href="AssignedBugReport.php">Assigned</a>            
+                            <a href="viewAssignedReportUI.php">Assigned</a>            
                           </div>
                         </div> 
             
@@ -203,7 +203,7 @@ $type = $search_word = $title = $keyword = $result = "";
                           </button>
                           <div class="dropdown-content">
                             <a href="GenerateReport.php"> Generate Report</a>
-                            <a href="PendingReview.php">Pending Review</a>
+                            <a href="viewPendingReportUI.php">Pending Review</a>
                             
                           </div>
                         </div> 

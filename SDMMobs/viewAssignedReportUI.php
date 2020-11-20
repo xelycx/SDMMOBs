@@ -38,13 +38,10 @@
 </style>
 
 <?php
-session_start();
-require_once "entity/class.BugReport.php";
+	include_once("controller/viewAssignedReportController.php");
 
-$tmp_br = new BugReport();
-echo "<br><center><h1><B>".$_SESSION['username']."'s assigned bug reports</B></h1></center>";
-$bugs = $tmp_br->GetAssignedBugReport($_SESSION['username']);
-include 'boundary/BugReportListView.php';
+	$rptCtrl = new viewAssignedReportController();
+	$rptCtrl->getAssign();
 
 ?>
 <br>
