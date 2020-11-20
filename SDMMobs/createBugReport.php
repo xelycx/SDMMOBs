@@ -1,12 +1,10 @@
 <?php
 // Include config file
-include_once("entity/class.BugReport.php");
-include_once("entity/class.BugReporter.php");
+include_once("controller/CreateBugReportController.php");
 
 session_start();
 
 // Define variables and initialize with empty values
-$tmp_bugReport = new BugReport();
 
 $name = $address = $salary = "";
 $name_err = $address_err = $salary_err = "";
@@ -33,11 +31,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     if(empty($input_severityLvl)) { $severityLvl_err = "Please enter the Severity Level ."; }
     elseif(!ctype_digit($input_severityLvl)) { $severityLvl_err = "Please enter a positive integer value."; }
     else { $severityLvl = $input_severityLvl; }
-	
-	$input_reporter = $_SESSION['username'];
 
     //insert to db
-    $tmp_bugReport->CreateBugReport($input_reporter, $input_title, $input_description, $input_severityLvl);
+	$br_crtl = new CreateBugReportController();
+	$br_crtl->createBugReport($input_title, $input_description, $input_severityLvl);
+
+	if ($check)
+	{
+        $createBr_success = "Bug Report has been successfully created!";
+    }
+    else if($br->getUsername() == "")
+        $createBr_success = "Failed to create Bug Report";
 
     $reporter = $input_reporter;
 }
@@ -83,8 +87,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
-								<option value="3">4</option>
-								<option value="3">5</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 							</select>
                             <span class="help-block"><?php echo $severityLvl_err;?></span>
                         </div>
