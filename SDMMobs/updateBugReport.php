@@ -104,7 +104,8 @@ if(isset($_POST["bug_id"]) && !empty($_POST["bug_id"])){
 else
 {
     // Check existence of id parameter before processing further
-    if(isset($_GET["bug_id"]) && !empty(trim($_GET["bug_id"]))){
+    if(isset($_GET["bug_id"]) && !empty(trim($_GET["bug_id"])))
+	{
         // Get URL parameter
         //retrieve existing values
         $bug_id =  trim($_GET["bug_id"]);
@@ -119,45 +120,9 @@ else
         $triager = $result->bug_triager;
         $developer = $result->bug_developer;
         $reviewer = $result->bug_reviewer;
-
-        // // Prepare a select statement
-        // $sql = "SELECT * FROM BugReports WHERE bug_id = ?";
-        // if($stmt = $mysqli->prepare($sql)){
-        //     // Bind variables to the prepared statement as parameters
-        //     $stmt->bind_param("i", $param_id);
-            
-        //     // Set parameters
-        //     $param_id = $bug_id;
-            
-        //     // Attempt to execute the prepared statement
-        //     if($stmt->execute()){
-        //         $result = $stmt->get_result();
-                
-        //         if($result->num_rows == 1){
-        //             /* Fetch result row as an associative array. Since the result set
-        //             contains only one row, we don't need to use while loop */
-        //             $row = $result->fetch_array(MYSQLI_ASSOC);
-                    
-        //             // Retrieve individual field value
-        //             $title = $row["bug_title"];
-        //             $description = $row["bug_description"];
-        //             $status = $row["bug_status"];
-        //         } else{
-        //             // URL doesn't contain valid id. Redirect to error page
-        //             header("location: error.php");
-        //             exit();
-        //         }
-                
-        //     } else{
-        //         echo "Oops! Something went wrong. Please try again later.";
-        //     }
-        // }
-        
-        // // Close statement
-        // $stmt->close();
-        
-
-    }  else{
+    }
+	else
+	{
         // URL doesn't contain id parameter. Redirect to error page
         header("location: error.php");
         exit();
