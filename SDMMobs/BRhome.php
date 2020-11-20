@@ -262,7 +262,7 @@ $type = $search_word = $title = $keyword = $result = "";
     <input id ="button" type="submit" name="search" value="Search" />
 </form>
 -->
-<button onclick="document.location='result.php'">Search</button>
+<button onclick="document.location='search.php'">Search</button>
 <button onclick="document.location='createBugReport.php'" <?php if ($_SESSION["user_role"] != 'bugreporter'){ ?> hidden <?php   } ?>>Create Bug Report</button>
 
 
