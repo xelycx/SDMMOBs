@@ -10,7 +10,7 @@ class BugReportController
         $this->bugreport = new BugReport();
     } 
 	
-	public function invoke()
+	public function display()
 	{
 		if (!isset($_GET['bug_id']))
 		{
@@ -22,8 +22,7 @@ class BugReportController
 		{
 			// show the requested bug report
 			$bug = $this->bugreport->ViewBugReport($_GET['bug_id']);
-			include 'boundary/BugReportView.php';
-			
+			include 'boundary/viewBugReportUI.php';
 			
 			// $bug = $this->bugreport->SearchForBugByKeyword("desc");
 			// echo implode(" ",$bug);

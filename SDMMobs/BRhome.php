@@ -270,7 +270,7 @@ $type = $search_word = $title = $keyword = $result = "";
 	include_once("controller/BugReportController.php");
 
 	$bugReportController = new BugReportController();
-	$bugReportController->invoke();
+	$bugReportController->display();
 
 ?>
 
