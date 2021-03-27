@@ -194,12 +194,12 @@ else
                         <div class="form-group <?php echo (!empty($severityLvl_err)) ? 'has-error' : ''; ?>">
                             <label for="Bug_severity_lvl">Severity Level</label>
 							<br>
-							<select id="Bug_severity_lvl" name="severitylvl">
+							<select id="Bug_severity_lvl" name="severityLvl">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
-								<option value="3">4</option>
-								<option value="3">5</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 							</select>
                             <span class="help-block"><?php echo $severityLvl_err;?></span>
                         </div>

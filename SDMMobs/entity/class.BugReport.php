@@ -130,9 +130,9 @@ class BugReport
 	    if(!empty($title) && !empty($description))
 	    {
 	        // Prepare an update statement
-	        $sql = "UPDATE BugReports SET bug_title=?, bug_description=?, bug_status=?, bug_open_date=?, bug_close_date=?, bug_severity_lvl=?, bug_reporter=?, bug_triager=?, bug_developer=?, bug_reviewer=? WHERE bug_id=$id";
+	        $sql = "UPDATE bugreports SET bug_title=?, bug_description=?, bug_status=?, bug_open_date=?, bug_close_date=?, bug_severity_lvl=?, bug_reporter=?, bug_triager=?, bug_developer=?, bug_reviewer=? WHERE bug_id=$id";
 
-	        // $sql = "UPDATE BugReports SET bug_title=$title, bug_description=$description, bug_status=$status, bug_open_date=$openDate, bug_close_date=$closeDate, bug_severity_lvl=$severityLevel, bug_reporter=$reporter, bug_triager=$triager, bug_developer=$developer, bug_reviewer=$reviewer WHERE bug_id=$id";
+	        // $sql = "UPDATE bugreports SET bug_title=$title, bug_description=$description, bug_status=$status, bug_open_date=$openDate, bug_close_date=$closeDate, bug_severity_lvl=$severityLevel, bug_reporter=$reporter, bug_triager=$triager, bug_developer=$developer, bug_reviewer=$reviewer WHERE bug_id=$id";
 	        echo $sql;
 	        if($stmt = $this->db_handle->prepare($sql))
 	        {
@@ -171,7 +171,7 @@ class BugReport
 	{
 		//$this->db_handle = (new DataBaseConfig())->getConnection();
 	    // Prepare a delete statement
-	    $sql = "DELETE FROM BugReports WHERE bug_id = ?";
+	    $sql = "DELETE FROM bugreports WHERE bug_id = ?";
 	    
 	    if($stmt = $this->db_handle->prepare($sql)){
 	        // Bind variables to the prepared statement as parameters
@@ -246,7 +246,7 @@ class BugReport
 	function ViewBugReport($bug_id)
 	{
 		//use the previous function to get all the bugreports and then we return the requested one.
-		$query = "SELECT * FROM BugReports WHERE bug_id = $bug_id";
+		$query = "SELECT * FROM bugreports WHERE bug_id = $bug_id";
 		$result = mysqli_query($this->db_handle, $query);
 		$bugreport = mysqli_fetch_object($result);
 		//$this->db_handle->close();
@@ -255,7 +255,7 @@ class BugReport
 	
 	function ViewBugReportList()
 	{
-		$query = "SELECT * FROM BugReports";
+		$query = "SELECT * FROM bugreports";
 		$result = mysqli_query($this->db_handle, $query);
 
 		return $result;
@@ -263,7 +263,7 @@ class BugReport
 	
 	function SearchForBugByKeyword($keyword)
 	{
-		$query = "SELECT * FROM BugReports WHERE bug_description LIKE '%$keyword%' ";
+		$query = "SELECT * FROM bugreports WHERE bug_description LIKE '%$keyword%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
 		//$bugreport = mysqli_fetch_assoc($result);
@@ -272,7 +272,7 @@ class BugReport
 	
 	function SearchForBugByTitle($title)
 	{
-		$query = "SELECT * FROM BugReports WHERE bug_title LIKE '%$title%' ";
+		$query = "SELECT * FROM bugreports WHERE bug_title LIKE '%$title%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
 		//$bugreport = mysqli_fetch_assoc($result);
@@ -281,7 +281,7 @@ class BugReport
 	
 	function SearchForBugByAssignee($assignee)
 	{
-		$query = "SELECT * FROM BugReports WHERE bug_developer LIKE '%$assignee%' ";
+		$query = "SELECT * FROM bugreports WHERE bug_developer LIKE '%$assignee%' ";
 		$result = mysqli_query($this->db_handle, $query);
 
 		//$bugreport = mysqli_fetch_assoc($result);
@@ -374,7 +374,7 @@ class BugReport
 	function GetOpenBugReport()
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		$query = "SELECT * FROM BugReports WHERE bug_status = 'Open' ";
+		$query = "SELECT * FROM bugreports WHERE bug_status = 'Open' ";
 		$result = mysqli_query($this->db_handle, $query);
 		//$this->db_handle->close();
 		return $result;
@@ -383,7 +383,7 @@ class BugReport
 	function GetClosedBugReport()
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		$query = "SELECT * FROM BugReports WHERE bug_status = 'Closed' ";
+		$query = "SELECT * FROM bugreports WHERE bug_status = 'Closed' ";
 		$result = mysqli_query($this->db_handle, $query);
 		//$this->db_handle->close();
 		return $result;
@@ -392,7 +392,7 @@ class BugReport
 	function GetReviewedBugReport()
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		$query = "SELECT * FROM BugReports WHERE bug_status = 'Reviewed' ";
+		$query = "SELECT * FROM bugreports WHERE bug_status = 'Reviewed' ";
 		$result = mysqli_query($this->db_handle, $query);
 		//$this->db_handle->close();
 		return $result;
@@ -401,7 +401,7 @@ class BugReport
 	function GetAssignedBugReport($username)
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		$query = "SELECT * FROM BugReports WHERE bug_status = 'Assigned' AND bug_developer LIKE '%$username%' ";
+		$query = "SELECT * FROM bugreports WHERE bug_status = 'Assigned' AND bug_developer LIKE '%$username%' ";
 		$result = mysqli_query($this->db_handle, $query);
 		//$this->db_handle->close();
 		return $result;
@@ -410,7 +410,7 @@ class BugReport
 	function GetPendingReviewBugReport()
 	{
 		$this->db_handle = (new DataBaseConfig())->getConnection();
-		$query = "SELECT * FROM BugReports WHERE bug_status = 'Pending Review' ";
+		$query = "SELECT * FROM bugreports WHERE bug_status = 'Pending Review' ";
 		$result = mysqli_query($this->db_handle, $query);
 		//$this->db_handle->close();
 		return $result;
